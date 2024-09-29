@@ -1,7 +1,7 @@
 function App() {
   return (
     <div>
-      <h1>TypeScript Cart App</h1>
+      <h1 className="underline">TypeScript Cart App</h1>
     </div>
   );
 }
