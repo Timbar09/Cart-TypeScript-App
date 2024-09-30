@@ -12,9 +12,9 @@ function App() {
 
   const content = (
     <>
-      <Header />
+      <Header viewCart={viewCart} setViewCart={setViewCart} />
       {pageContent}
-      <Footer />
+      <Footer viewCart={viewCart} />
     </>
   );
 
