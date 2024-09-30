@@ -1,4 +1,5 @@
 import Container from './Container';
+import useCart from '../hooks/useCart';
 
 type PropsType = {
   viewCart: boolean;
@@ -6,6 +7,8 @@ type PropsType = {
 };
 
 const Header = ({ viewCart, setViewCart }: PropsType) => {
+  const { totalItems, totalPrice } = useCart();
+
   const content = (
     <header>
       <Container className="flex justify-between items-center py-4">
@@ -21,11 +24,11 @@ const Header = ({ viewCart, setViewCart }: PropsType) => {
 
           <div className="text-xs text-text-secondary flex flex-col justify-between">
             <p>
-              <>Items:</> <span className="text-text-primary font-bold">0</span>
+              Items: <span className="text-text-primary font-bold">{totalItems}</span>
             </p>
 
             <p>
-              <>Total:</> <span className="text-text-primary font-bold">$0.00</span>
+              Total: <span className="text-text-primary font-bold">{totalPrice || '$0'}</span>
             </p>
           </div>
         </div>
