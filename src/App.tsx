@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import Container from './components/Container';
 import Header from './components/Header';
 import Cart from './components/Cart';
 import ProductList from './components/ProductList';
@@ -13,7 +14,9 @@ function App() {
   const content = (
     <>
       <Header viewCart={viewCart} setViewCart={setViewCart} />
-      {pageContent}
+
+      <Container>{pageContent}</Container>
+
       <Footer viewCart={viewCart} />
     </>
   );
