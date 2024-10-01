@@ -28,7 +28,11 @@ const ProductList = () => {
   }
 
   return (
-    <ul className="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:mx-[10%] lg:mx-0">{content}</ul>
+    <>
+      <h1 className="offscreen">Products</h1>
+
+      <ul className="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:mx-[10%] lg:mx-0">{content}</ul>
+    </>
   );
 };
 
