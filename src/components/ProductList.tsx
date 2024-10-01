@@ -9,10 +9,10 @@ const ProductList = () => {
   const { dispatch, REDUCER_ACTIONS, cart } = useCart();
   const { products } = useProducts();
 
-  let componentContent: ReactElement | ReactElement[] = <div>Loading...</div>;
+  let content: ReactElement | ReactElement[] = <div>Loading...</div>;
 
   if (products?.length) {
-    componentContent = products.map((product) => {
+    content = products.map((product) => {
       const inCart: boolean = cart.some((cartItem) => cartItem.sku === product.sku);
 
       return (
@@ -27,7 +27,9 @@ const ProductList = () => {
     });
   }
 
-  return <ul>{componentContent}</ul>;
+  return (
+    <ul className="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:mx-[10%] lg:mx-0">{content}</ul>
+  );
 };
 
 export default ProductList;

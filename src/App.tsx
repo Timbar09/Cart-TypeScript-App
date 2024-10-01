@@ -15,7 +15,7 @@ function App() {
     <>
       <Header viewCart={viewCart} setViewCart={setViewCart} />
 
-      <Container>{pageContent}</Container>
+      <Container className="text-text-secondary">{pageContent}</Container>
 
       <Footer viewCart={viewCart} />
     </>
