@@ -1,5 +1,7 @@
-import Container from './Container';
 import useCart from '../hooks/useCart';
+
+import Container from './Container';
+import Button from './Button';
 
 type PropsType = {
   viewCart: boolean;
@@ -15,12 +17,9 @@ const Header = ({ viewCart, setViewCart }: PropsType) => {
         <h1>React Shop</h1>
 
         <div className="flex items-center gap-1">
-          <button
-            className="bg-gray-100 py-1 px-4 rounded hover:bg-gray-200 text-text-primary"
-            onClick={() => setViewCart(!viewCart)}
-          >
+          <Button handleClick={() => setViewCart(!viewCart)}>
             {viewCart ? 'Back to Products' : 'View Cart'}
-          </button>
+          </Button>
 
           <div className="text-xs text-text-secondary flex flex-col justify-between">
             <p>
