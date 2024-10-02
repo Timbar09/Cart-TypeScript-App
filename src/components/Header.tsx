@@ -3,6 +3,8 @@ import useCart from '../hooks/useCart';
 import Container from './Container';
 import Button from './Button';
 
+import logoImg from '../assets/logo.png';
+
 type PropsType = {
   viewCart: boolean;
   setViewCart: React.Dispatch<React.SetStateAction<boolean>>;
@@ -14,7 +16,10 @@ const Header = ({ viewCart, setViewCart }: PropsType) => {
   const content = (
     <header>
       <Container className="flex justify-between items-center py-4">
-        <h1>React Shop</h1>
+        <div className="flex items-center gap-2">
+          <img src={logoImg} alt="Logo" className="h-8" />{' '}
+          <h1 className="hidden sm:block text-text-primary font-bold italic text-xl">Easy Pick</h1>
+        </div>
 
         <div className="flex items-center gap-1">
           <Button handleClick={() => setViewCart(!viewCart)}>
