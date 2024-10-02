@@ -1,7 +1,9 @@
 import useCart from '../hooks/useCart';
 
+import { FaCartShopping as CartIcon } from 'react-icons/fa6';
+
 import Container from './Container';
-import Button from './Button';
+// import Button from './Button';
 
 import logoImg from '../assets/logo.png';
 
@@ -21,20 +23,25 @@ const Header = ({ viewCart, setViewCart }: PropsType) => {
           <h1 className="hidden sm:block text-text-primary font-bold italic text-xl">Easy Pick</h1>
         </div>
 
-        <div className="flex items-center gap-1">
-          <Button handleClick={() => setViewCart(!viewCart)}>
-            {viewCart ? 'Back to Products' : 'View Cart'}
-          </Button>
+        <div className="flex items-center gap-1 bg-gray-100 py-1 pr-4 pl-2 rounded-md">
+          <button
+            className="cart__logo relative hover:bg-gray-200 p-2 rounded-full"
+            type="button"
+            onClick={() => setViewCart(!viewCart)}
+          >
+            <CartIcon className="text-text-primary text-xl" />
 
-          <div className="text-xs text-text-secondary flex flex-col justify-between">
-            <p>
-              Items: <span className="text-text-primary font-bold">{totalItems}</span>
-            </p>
+            {totalItems > 0 && (
+              <span
+                className="absolute top-0 left-0 bg-red-500 text-background-primary text-[0.55rem] font-bold w-4 h-4 grid place-items-center rounded-full"
+                aria-label="Total items in cart"
+              >
+                {totalItems}
+              </span>
+            )}
+          </button>
 
-            <p>
-              Total: <span className="text-text-primary font-bold">{totalPrice || '$0'}</span>
-            </p>
-          </div>
+          <span className="text-md text-text-primary font-bold">{totalPrice || '$0'}</span>
         </div>
       </Container>
     </header>
