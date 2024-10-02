@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { memo, ReactElement } from 'react';
 import { CartItemType } from '../context/CartProvider';
 import { ReducerAction, ReducerActionType } from '../context/CartProvider';
 
@@ -39,8 +39,8 @@ const CartLineItem = ({ item, dispatch, REDUCER_ACTIONS }: CartLineItemProps): J
   };
 
   const content = (
-    <li>
-      <img src={img} alt={item.name} className="" />
+    <li className="flex items-center gap-4 bg-gray-50 p-4 rounded">
+      <img src={img} alt={item.name} className="max-w-24" />
 
       <h2 aria-label="Item Name">{item.name}</h2>
 
@@ -77,4 +77,16 @@ const CartLineItem = ({ item, dispatch, REDUCER_ACTIONS }: CartLineItemProps): J
 
   return content;
 };
-export default CartLineItem;
+
+const areItemsEqual = (
+  { item: prevItem }: CartLineItemProps,
+  { item: nextItem }: CartLineItemProps
+) => {
+  return Object.keys(prevItem).every(
+    (key) => prevItem[key as keyof CartItemType] === nextItem[key as keyof CartItemType]
+  );
+};
+
+const MemoizedCartLineItem = memo<typeof CartLineItem>(CartLineItem, areItemsEqual);
+
+export default MemoizedCartLineItem;

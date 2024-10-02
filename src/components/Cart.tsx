@@ -23,7 +23,7 @@ const Cart = () => {
     <div>
       <h1 className="offscreen">Cart</h1>
 
-      <ul>
+      <ul className="flex flex-col gap-4">
         {cart.map((item) => (
           <CartLineItem
             key={item.sku}
