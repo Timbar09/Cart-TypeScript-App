@@ -1,5 +1,6 @@
 import Container from '../Container';
 import HeaderCartButton from './HeaderCartButton';
+import HeaderWishlistButton from './HeaderWishlistButton';
 
 import logoImg from '../../assets/logo.png';
 
@@ -17,7 +18,18 @@ const Header = ({ viewCart, setViewCart }: PropsType) => {
           <h1 className="hidden sm:block text-text-primary font-bold italic text-xl">Easy Pick</h1>
         </div>
 
-        {!viewCart && <HeaderCartButton viewCart={viewCart} setViewCart={setViewCart} />}
+        {!viewCart && (
+          <div className="flex items-center gap-4">
+            <HeaderWishlistButton />
+            <HeaderCartButton viewCart={viewCart} setViewCart={setViewCart} />
+            <button
+              type="button"
+              className="border border-gray-200 text-sm text-white p-2 rounded-full hover:bg-gray-50"
+            >
+              🧑🏾‍🦱
+            </button>
+          </div>
+        )}
       </Container>
     </header>
   );
