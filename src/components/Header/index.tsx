@@ -21,7 +21,7 @@ const Header = ({ viewCart, setViewCart }: PropsType) => {
         </div>
 
         {!viewCart && (
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <HeaderWishlistButton />
             <HeaderCartButton viewCart={viewCart} setViewCart={setViewCart} />
             <button
