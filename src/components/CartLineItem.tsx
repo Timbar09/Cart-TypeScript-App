@@ -51,7 +51,7 @@ const CartLineItem = ({ item, dispatch, REDUCER_ACTIONS }: CartLineItemProps): J
         }).format(item.price)}
       </p>
 
-      <label htmlFor="quantity" className="offscreen">
+      <label htmlFor="quantity" className="sr-only">
         Quantity
       </label>
       <select name="quantity" id="quantity" value={item.quantity} onChange={onChangeQuantity}>

@@ -21,7 +21,7 @@ const Cart = () => {
     </div>
   ) : (
     <div>
-      <h1 className="offscreen">Cart</h1>
+      <h1 className="sr-only">Cart</h1>
 
       <ul className="flex flex-col gap-4">
         {cart.map((item) => (

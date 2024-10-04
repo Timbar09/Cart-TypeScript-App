@@ -2,8 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap');
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --ff-heading: 'Exo 2', sans-serif;
+  --ff-primary: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+  font-family: var(--ff-primary);
   line-height: 1.5;
   font-weight: 400;
 
@@ -18,14 +23,12 @@ body {
   padding: 0;
 }
 
-.offscreen {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button {
+  font-family: var(--ff-heading);
 }
