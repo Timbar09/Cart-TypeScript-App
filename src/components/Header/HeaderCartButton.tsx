@@ -20,11 +20,11 @@ const HeaderCartButton = ({ viewCart, setViewCart }: HeaderCartButtonProps) => {
       <span className="text-sm text-text-primary">Your Cart</span>
 
       <div className="relative ">
-        <CartIcon className="text-text-primary text-xl" />
+        <CartIcon className="text-text-primary text-lg" />
 
         {totalItems > 0 && (
           <span
-            className="absolute top-[-0.35rem] right-[-0.35rem] bg-red-500 text-background-primary text-[0.55rem] font-bold w-4 h-4 grid place-items-center rounded-full"
+            className="absolute top-[-0.35rem] right-[-0.5rem] bg-red-500 text-background-primary text-[0.55rem] font-bold w-4 h-4 grid place-items-center rounded-full"
             aria-label="Total items in cart"
           >
             {totalItems}

@@ -15,7 +15,9 @@ const Header = ({ viewCart, setViewCart }: PropsType) => {
       <Container className="flex justify-between items-center py-4">
         <div className="flex items-center gap-2">
           <img src={logoImg} alt="Logo" className="h-8" />{' '}
-          <h1 className="hidden sm:block text-text-primary font-bold italic text-xl">Easy Pick</h1>
+          <h1 className="hidden sm:block text-text-primary italic text-lg">
+            Easy<span className="font-bold">Pick</span>
+          </h1>
         </div>
 
         {!viewCart && (
@@ -25,6 +27,7 @@ const Header = ({ viewCart, setViewCart }: PropsType) => {
             <button
               type="button"
               className="border border-gray-200 text-sm text-white p-2 rounded-full hover:bg-gray-50"
+              aria-label="User"
             >
               🧑🏾‍🦱
             </button>
