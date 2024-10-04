@@ -9,7 +9,7 @@ import Footer from './components/Footer';
 function App() {
   const [viewCart, setViewCart] = useState<boolean>(false);
 
-  const pageContent = viewCart ? <Cart /> : <Products />;
+  const pageContent = viewCart ? <Cart setViewCart={setViewCart} /> : <Products />;
 
   const content = (
     <>

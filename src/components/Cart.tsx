@@ -5,7 +5,11 @@ import useCart from '../hooks/useCart';
 import CartLineItem from './CartLineItem';
 import Button from './Button';
 
-const Cart = () => {
+type CartProps = {
+  setViewCart: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const Cart = ({ setViewCart }: CartProps) => {
   const [confirm, setConfirm] = useState<boolean>(false);
   const { dispatch, REDUCER_ACTIONS, totalItems, totalPrice, cart } = useCart();
 
@@ -42,6 +46,8 @@ const Cart = () => {
       <Button handleClick={onSubmitOrder} disabled={!totalItems}>
         Place Order
       </Button>
+
+      <Button handleClick={() => setViewCart(false)}>Go Back to Products</Button>
     </div>
   );
 
