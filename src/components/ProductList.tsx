@@ -29,7 +29,7 @@ const ProductList = () => {
 
   return (
     <div className="@container">
-      <header className="mb-4 py-4">
+      <header className=" py-4">
         <h2 className="text-2xl font-bold text-text-primary">Products</h2>
       </header>
 
