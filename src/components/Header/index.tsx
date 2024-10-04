@@ -26,7 +26,7 @@ const Header = ({ viewCart, setViewCart }: PropsType) => {
             <HeaderCartButton viewCart={viewCart} setViewCart={setViewCart} />
             <button
               type="button"
-              className="border border-gray-200 text-sm text-white p-2 rounded-full hover:bg-gray-50"
+              className="border border-gray-200 text-sm text-white p-2 rounded-full hover:bg-gray-100"
               aria-label="User"
             >
               🧑🏾‍🦱

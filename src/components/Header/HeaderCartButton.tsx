@@ -13,18 +13,18 @@ const HeaderCartButton = ({ viewCart, setViewCart }: HeaderCartButtonProps) => {
 
   return (
     <button
-      className="flex items-center gap-1 bg-gray-100 hover:bg-gray-200 py-2 px-3 rounded-md"
+      className="flex items-center gap-1 text-primary hover:text-text-primary bg-primary-100 hover:bg-gray-100 py-2 px-3 rounded-md"
       type="button"
       onClick={() => setViewCart(!viewCart)}
     >
-      <span className="text-sm text-text-primary">Your Cart</span>
+      <span className="text-sm">Your Cart</span>
 
       <div className="relative ">
-        <CartIcon className="text-text-primary text-lg" />
+        <CartIcon className="text-lg" />
 
         {totalItems > 0 && (
           <span
-            className="absolute top-[-0.35rem] right-[-0.5rem] bg-red-500 text-background-primary text-[0.55rem] font-bold w-4 h-4 grid place-items-center rounded-full"
+            className="absolute top-[-0.45rem] right-[-0.65rem] bg-red-500 text-background-primary text-[0.55rem] font-bold w-4 h-4 grid place-items-center rounded-full"
             aria-label="Total items in cart"
           >
             {totalItems}
