@@ -28,11 +28,13 @@ const ProductList = () => {
   }
 
   return (
-    <>
-      <h1 className="sr-only">Products</h1>
+    <div className="@container">
+      <header className="mb-4 py-4">
+        <h2 className="text-2xl font-bold text-text-primary">Products</h2>
+      </header>
 
-      <ul className="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:mx-[10%] lg:mx-0">{content}</ul>
-    </>
+      <ul className="@xs:grid @xs:grid-cols-2 @xl:grid-cols-3 gap-4">{content}</ul>
+    </div>
   );
 };
 

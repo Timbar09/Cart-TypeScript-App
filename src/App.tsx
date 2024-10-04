@@ -3,13 +3,13 @@ import { useState } from 'react';
 import Container from './components/Container';
 import Header from './components/Header';
 import Cart from './components/Cart';
-import ProductList from './components/ProductList';
+import Products from './components/Products';
 import Footer from './components/Footer';
 
 function App() {
   const [viewCart, setViewCart] = useState<boolean>(false);
 
-  const pageContent = viewCart ? <Cart /> : <ProductList />;
+  const pageContent = viewCart ? <Cart /> : <Products />;
 
   const content = (
     <>
