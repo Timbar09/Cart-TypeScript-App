@@ -2,7 +2,7 @@ import { memo, ReactElement } from 'react';
 import { CartItemType } from '../../context/CartProvider';
 import { ReducerAction, ReducerActionType } from '../../context/CartProvider';
 
-import Button from '../Button';
+import { IoClose as RemoveIcon } from 'react-icons/io5';
 
 type CartLineItemProps = {
   item: CartItemType;
@@ -11,12 +11,19 @@ type CartLineItemProps = {
 };
 
 const CartLineItem = ({ item, dispatch, REDUCER_ACTIONS }: CartLineItemProps): JSX.Element => {
-  const img: string = new URL(`../images/${item.sku}.jpg`, import.meta.url).href;
+  const numToCurrency = (num: number): string => {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    }).format(num);
+  };
 
-  const lineTotal: number = item.price * item.quantity;
+  const img: string = new URL(`../../images/${item.sku}.jpg`, import.meta.url).href;
+
+  const productPrice: string = numToCurrency(item.price);
+  const lineTotal: string = numToCurrency(item.price * item.quantity);
 
   const highestQuantity: number = 20 > item.quantity ? 20 : item.quantity;
-
   const optionValues: number[] = [...Array(highestQuantity).keys()].map((i) => i + 1);
 
   const options: ReactElement[] = optionValues.map((val) => {
@@ -39,39 +46,55 @@ const CartLineItem = ({ item, dispatch, REDUCER_ACTIONS }: CartLineItemProps): J
   };
 
   const content = (
-    <li className="flex items-center gap-4 bg-gray-50 p-4 rounded">
-      <img src={img} alt={item.name} className="max-w-24" />
+    <li className="flex @container">
+      <div
+        className="grid grid-cols-1 @md:grid-cols-[1fr_1fr] @lg:grid-cols-[minmax(15rem,_1.5fr)_1fr] gap-2 @md:gap-4 w-full items-center
+       bg-gray-100 py-4 pl-4 pr-6 rounded-lg"
+      >
+        <div className="flex items-center gap-4 border-b-2 @md:border-b-0 border-gray-200 pb-2">
+          <img
+            src={img}
+            alt={item.name}
+            className="max-w-14 sm:max-w-16 rounded-full border-2 border-gray-200"
+          />
 
-      <h2 aria-label="Item Name">{item.name}</h2>
+          <div className="">
+            <h3 className="text-lg font-semibold text-text-primary" aria-label="Item Name">
+              {item.name}
+            </h3>
+            <p aria-label="Item SKU" className="text-xs text-gray-500">
+              Ref: {item.sku}
+            </p>
+          </div>
+        </div>
 
-      <p aria-label="Price per item">
-        {new Intl.NumberFormat('en-US', {
-          style: 'currency',
-          currency: 'USD',
-        }).format(item.price)}
-      </p>
+        <div className="grid grid-cols-2 @xs:grid-cols-3">
+          <div className="hidden @xs:block">
+            <p aria-label="Price per item">{productPrice}</p>
+          </div>
 
-      <label htmlFor="quantity" className="sr-only">
-        Quantity
-      </label>
-      <select name="quantity" id="quantity" value={item.quantity} onChange={onChangeQuantity}>
-        {options}
-      </select>
+          <div>
+            <label htmlFor="quantity" className="sr-only">
+              Quantity
+            </label>
+            <select name="quantity" id="quantity" value={item.quantity} onChange={onChangeQuantity}>
+              {options}
+            </select>
+          </div>
 
-      <p aria-label="Line Total">
-        {new Intl.NumberFormat('en-US', {
-          style: 'currency',
-          currency: 'USD',
-        }).format(lineTotal)}
-      </p>
+          <p aria-label="Line Total">{lineTotal}</p>
+        </div>
+      </div>
 
-      <Button
-        handleClick={onRemoveFromCart}
+      <button
+        type="button"
+        className="bg-transparent rounded-r hover:bg-red-100 hover:text-red-500 py-4 px-4 md:px-8 xl:px-12 ml-[-5px]"
+        onClick={onRemoveFromCart}
         aria-label="Remove item from cart"
         title="Remove item from cart"
       >
-        X
-      </Button>
+        <RemoveIcon className="text-2xl" />
+      </button>
     </li>
   );
 
