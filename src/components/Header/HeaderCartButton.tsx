@@ -1,6 +1,5 @@
 import useCart from '../../hooks/useCart';
 
-// import { FaCartShopping as CartIcon } from 'react-icons/fa6';
 import { IoCartOutline as CartIcon } from 'react-icons/io5';
 
 type HeaderCartButtonProps = {

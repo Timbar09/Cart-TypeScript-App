@@ -25,7 +25,9 @@ const Cart = ({ setViewCart }: CartProps) => {
     </div>
   ) : (
     <div>
-      <h1 className="sr-only">Cart</h1>
+      <header className=" py-4">
+        <h2 className="text-3xl font-medium text-text-primary">Your Shopping Cart</h2>
+      </header>
 
       <ul className="flex flex-col gap-4">
         {cart.map((item) => (
