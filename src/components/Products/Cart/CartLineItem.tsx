@@ -1,8 +1,8 @@
 import { memo, ReactElement } from 'react';
-import { CartItemType } from '../context/CartProvider';
-import { ReducerAction, ReducerActionType } from '../context/CartProvider';
+import { CartItemType } from '../../../context/CartProvider';
+import { ReducerAction, ReducerActionType } from '../../../context/CartProvider';
 
-import Button from './Button';
+import Button from '../../Button';
 
 type CartLineItemProps = {
   item: CartItemType;

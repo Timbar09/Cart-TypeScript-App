@@ -17,8 +17,6 @@ type ProductProps = {
 const Product = ({ product, dispatch, REDUCER_ACTIONS, inCart }: ProductProps): ReactElement => {
   const img: string = new URL(`../../images/${product.sku}.jpg`, import.meta.url).href;
 
-  console.log(img);
-
   const onAddToCart = () => () =>
     dispatch({ type: REDUCER_ACTIONS.ADD, payload: { ...product, quantity: 1 } });
 

@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import Container from './components/Container';
 import Header from './components/Header';
-import Cart from './components/Cart';
+import Cart from './components/Products/Cart';
 import Products from './components/Products';
 import Footer from './components/Footer';
 
