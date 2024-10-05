@@ -1,7 +1,7 @@
 import { memo, ReactElement } from 'react';
 
-import { ProductType } from '../context/ProductsProvider';
-import { ReducerActionType, ReducerAction } from '../context/CartProvider';
+import { ProductType } from '../../context/ProductsProvider';
+import { ReducerActionType, ReducerAction } from '../../context/CartProvider';
 
 import { PiHeart as WishlistIcon } from 'react-icons/pi';
 import { IoCartOutline as CartIcon } from 'react-icons/io5';
@@ -15,7 +15,7 @@ type ProductProps = {
 };
 
 const Product = ({ product, dispatch, REDUCER_ACTIONS, inCart }: ProductProps): ReactElement => {
-  const img: string = new URL(`../images/${product.sku}.jpg`, import.meta.url).href;
+  const img: string = new URL(`../../images/${product.sku}.jpg`, import.meta.url).href;
 
   console.log(img);
 
@@ -62,7 +62,7 @@ const Product = ({ product, dispatch, REDUCER_ACTIONS, inCart }: ProductProps): 
         ) : (
           <button
             type="button"
-            className="bg-primary text-white p-2 rounded-md hover:shadow-md"
+            className="bg-primary hover:bg-primary-400 text-white p-2 rounded-md hover:shadow-md"
             onClick={onAddToCart()}
             aria-label="Add to Cart"
             title="Add to Cart"

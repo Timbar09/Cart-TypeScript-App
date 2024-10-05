@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 
-import useCart from '../hooks/useCart';
-import useProducts from '../hooks/useProducts';
+import useCart from '../../hooks/useCart';
+import useProducts from '../../hooks/useProducts';
 
 import Product from './Product';
 

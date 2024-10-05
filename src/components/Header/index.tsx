@@ -20,19 +20,18 @@ const Header = ({ viewCart, setViewCart }: PropsType) => {
           </h1>
         </div>
 
-        {!viewCart && (
-          <div className="flex items-center gap-3">
-            <HeaderWishlistButton />
-            <HeaderCartButton viewCart={viewCart} setViewCart={setViewCart} />
-            <button
-              type="button"
-              className="border border-gray-200 text-sm text-white p-2 rounded-full hover:bg-gray-100"
-              aria-label="User"
-            >
-              🧑🏾‍🦱
-            </button>
-          </div>
-        )}
+        <div className="flex items-center gap-3">
+          <HeaderWishlistButton />
+          {!viewCart && <HeaderCartButton viewCart={viewCart} setViewCart={setViewCart} />}
+
+          <button
+            type="button"
+            className="border border-gray-200 text-sm text-white p-2 rounded-full hover:bg-gray-100"
+            aria-label="User"
+          >
+            🧑🏾‍🦱
+          </button>
+        </div>
       </Container>
     </header>
   );
