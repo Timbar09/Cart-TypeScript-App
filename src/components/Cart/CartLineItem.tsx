@@ -82,7 +82,9 @@ const CartLineItem = ({ item, dispatch, REDUCER_ACTIONS }: CartLineItemProps): J
             </select>
           </div>
 
-          <p aria-label="Line Total">{lineTotal}</p>
+          <p className="text-text-primary font-semibold" aria-label="Line Total">
+            {lineTotal}
+          </p>
         </div>
       </div>
 
