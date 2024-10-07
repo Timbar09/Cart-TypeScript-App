@@ -7,6 +7,8 @@ import { PiHeart as WishlistIcon } from 'react-icons/pi';
 import { IoCartOutline as CartIcon } from 'react-icons/io5';
 import { BsCartCheck as CartCheckIcon } from 'react-icons/bs';
 
+import Button from '../Button';
+
 type ProductProps = {
   product: ProductType;
   dispatch: React.Dispatch<ReducerAction>;
@@ -30,13 +32,13 @@ const Product = ({ product, dispatch, REDUCER_ACTIONS, inCart }: ProductProps): 
       <header className="absolute top-0 right-0 flex items-center justify-between p-4">
         <span></span>
 
-        <button
-          type="button"
-          className="flex items-center gap-1 hover:text-primary hover:bg-primary-100 py-2 p-2 rounded-md"
+        <Button
+          className="px-2 bg-transparent hover:bg-primary-50 hover:text-primary"
           aria-label="Add to Wishlist"
+          title="Add to Wishlist"
         >
           <WishlistIcon className=" text-lg" />
-        </button>
+        </Button>
       </header>
 
       <img src={img} alt={product.name} className="w-100 border-b-2 border-gray-100" />
@@ -58,15 +60,16 @@ const Product = ({ product, dispatch, REDUCER_ACTIONS, inCart }: ProductProps): 
             <CartCheckIcon className="text-lg" />
           </span>
         ) : (
-          <button
+          <Button
+            buttonRole="primary"
             type="button"
-            className="bg-primary hover:bg-primary-400 text-white p-2 rounded-md hover:shadow-md"
-            onClick={onAddToCart()}
+            className="px-2 hover:shadow-md"
+            handleClick={onAddToCart()}
             aria-label="Add to Cart"
             title="Add to Cart"
           >
             <CartIcon className="text-lg" />
-          </button>
+          </Button>
         )}
       </div>
     </li>

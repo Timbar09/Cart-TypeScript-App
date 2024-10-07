@@ -2,6 +2,8 @@ import useCart from '../../hooks/useCart';
 
 import { IoCartOutline as CartIcon } from 'react-icons/io5';
 
+import Button from '../Button';
+
 type HeaderCartButtonProps = {
   viewCart: boolean;
   setViewCart: React.Dispatch<React.SetStateAction<boolean>>;
@@ -11,10 +13,11 @@ const HeaderCartButton = ({ viewCart, setViewCart }: HeaderCartButtonProps) => {
   const { totalItems } = useCart();
 
   return (
-    <button
-      className="flex items-center gap-1 text-primary hover:text-text-primary bg-primary-100 hover:bg-gray-100 py-2 px-2 md:px-3 rounded-md"
+    <Button
+      buttonRole="secondary"
+      className="flex items-center gap-1 px-2 md:px-3"
       type="button"
-      onClick={() => setViewCart(!viewCart)}
+      handleClick={() => setViewCart(!viewCart)}
       aria-label="View Cart"
     >
       <span className="hidden md:inline-block text-sm">Your Cart</span>
@@ -31,7 +34,7 @@ const HeaderCartButton = ({ viewCart, setViewCart }: HeaderCartButtonProps) => {
           </span>
         )}
       </div>
-    </button>
+    </Button>
   );
 };
 export default HeaderCartButton;
