@@ -32,3 +32,7 @@ h6,
 button {
   font-family: var(--ff-heading);
 }
+
+#quantity {
+  -moz-appearance: textfield;
+}

@@ -29,6 +29,10 @@ const buttonRoles = {
   tertiary: 'bg-gray-100 hover:bg-gray-200 text-primary-900',
 };
 
+const doesClassNameContainPx = (className: string): boolean => {
+  return className.includes('px-');
+};
+
 const Button = ({
   handleClick,
   children,
@@ -43,7 +47,9 @@ const Button = ({
     <button
       type={type}
       onClick={handleClick}
-      className={`py-2 px-3 rounded-md  cursor-pointer ${buttonRoles[buttonRole]} ${className}`}
+      className={`py-2 ${
+        doesClassNameContainPx(className) ? '' : 'px-3'
+      } rounded-md  cursor-pointer ${buttonRoles[buttonRole]} ${className}`}
       disabled={disabled}
       aria-label={ariaLabel}
       title={title}

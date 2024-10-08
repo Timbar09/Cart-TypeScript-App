@@ -44,7 +44,12 @@ const CartLine = () => {
 
       <footer className="@container">
         <div className="flex flex-col-reverse @sm:flex-row justify-between items-center gap-4 py-4">
-          <Button handleClick={onSubmitOrder} disabled={!totalItems}>
+          <Button
+            buttonRole="primary"
+            className="w-full @sm:w-auto"
+            handleClick={onSubmitOrder}
+            disabled={!totalItems}
+          >
             Place Order
           </Button>
 

@@ -1,8 +1,9 @@
-import { memo, ReactElement } from 'react';
+import { memo } from 'react';
 import { CartItemType } from '../../context/CartProvider';
 import { ReducerAction, ReducerActionType } from '../../context/CartProvider';
 
 import { IoClose as RemoveIcon } from 'react-icons/io5';
+import { GrFormAdd as AddIcon, GrFormSubtract as SubtractIcon } from 'react-icons/gr';
 
 type CartLineItemProps = {
   item: CartItemType;
@@ -23,18 +24,25 @@ const CartLineItem = ({ item, dispatch, REDUCER_ACTIONS }: CartLineItemProps): J
   const productPrice: string = numToCurrency(item.price);
   const lineTotal: string = numToCurrency(item.price * item.quantity);
 
-  const highestQuantity: number = 20 > item.quantity ? 20 : item.quantity;
-  const optionValues: number[] = [...Array(highestQuantity).keys()].map((i) => i + 1);
+  const onStepperClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const { id } = e.currentTarget;
 
-  const options: ReactElement[] = optionValues.map((val) => {
-    return (
-      <option key={`opt${val}`} value={val}>
-        {val}
-      </option>
-    );
-  });
+    if (id === 'decrement' && item.quantity > 1) {
+      dispatch({
+        type: REDUCER_ACTIONS.QUANTITY,
+        payload: { ...item, quantity: item.quantity - 1 },
+      });
+    }
 
-  const onChangeQuantity = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (id === 'increment' && item.quantity < 20) {
+      dispatch({
+        type: REDUCER_ACTIONS.QUANTITY,
+        payload: { ...item, quantity: item.quantity + 1 },
+      });
+    }
+  };
+
+  const onChangeQuantity = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch({
       type: REDUCER_ACTIONS.QUANTITY,
       payload: { ...item, quantity: Number(e.target.value) },
@@ -48,10 +56,10 @@ const CartLineItem = ({ item, dispatch, REDUCER_ACTIONS }: CartLineItemProps): J
   const content = (
     <li className="flex @container">
       <div
-        className="grid grid-cols-1 @md:grid-cols-[1fr_1fr] @lg:grid-cols-[minmax(15rem,_1.5fr)_1fr] gap-2 @md:gap-4 w-full items-center
+        className="grid grid-cols-1 @lg:grid-cols-[1fr_1fr] @xl:grid-cols-[minmax(15rem,_1fr)_1fr] gap-2 @md:gap-4 w-full items-center
        bg-gray-100 py-4 pl-4 pr-6 rounded-lg"
       >
-        <div className="flex items-center gap-4 border-b-2 @md:border-b-0 border-gray-200 pb-2">
+        <div className="flex items-center gap-4 border-b-2 @lg:border-b-0 border-gray-200 pb-2">
           <img
             src={img}
             alt={item.name}
@@ -68,23 +76,47 @@ const CartLineItem = ({ item, dispatch, REDUCER_ACTIONS }: CartLineItemProps): J
           </div>
         </div>
 
-        <div className="grid grid-cols-2 @xs:grid-cols-3">
+        <div className="grid grid-cols-2 gap-1 @xs:grid-cols-[1fr_1.5fr_1fr] place-items-center">
           <div className="hidden @xs:block">
             <p aria-label="Price per item">{productPrice}</p>
           </div>
 
-          <div>
+          <div className="flex items-center gap-1">
             <label htmlFor="quantity" className="sr-only">
               Quantity
             </label>
-            <select name="quantity" id="quantity" value={item.quantity} onChange={onChangeQuantity}>
-              {options}
-            </select>
+
+            <button
+              className="border hover:bg-primary-50 active:bg-primary-100 w-5 h-5 grid place-items-center rounded-full"
+              type="button"
+              id="decrement"
+              aria-label="Decrement quantity"
+              onClick={onStepperClick}
+            >
+              <SubtractIcon />
+            </button>
+            <input
+              className="w-8 text-center border border-gray-200 rounded-md"
+              type="number"
+              id="quantity"
+              value={item.quantity}
+              max={20}
+              min={1}
+              readOnly
+              onChange={onChangeQuantity}
+            />
+            <button
+              className="border hover:bg-primary-50 active:bg-primary-100 w-5 h-5 grid place-items-center rounded-full"
+              type="button"
+              id="increment"
+              aria-label="Increment quantity"
+              onClick={onStepperClick}
+            >
+              <AddIcon />
+            </button>
           </div>
 
-          <p className="text-text-primary font-semibold" aria-label="Line Total">
-            {lineTotal}
-          </p>
+          <p aria-label="Line Total">{lineTotal}</p>
         </div>
       </div>
 
