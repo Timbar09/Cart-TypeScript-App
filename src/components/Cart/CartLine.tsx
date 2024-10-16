@@ -1,18 +1,23 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 
 import useCart from '../../hooks/useCart';
 
 import CartLineItem from './CartLineItem';
 import Button from '../Button';
 
-const CartLine = () => {
-  const [confirm, setConfirm] = useState<boolean>(false);
+type CartLineProps = {
+  handlePlaceOrderClick: () => void;
+  confirm: boolean;
+};
+
+const CartLine = ({ handlePlaceOrderClick, confirm }: CartLineProps) => {
+  // const [confirm, setConfirm] = useState<boolean>(false);
   const { dispatch, REDUCER_ACTIONS, totalItems, totalPrice, cart } = useCart();
 
-  const onSubmitOrder = () => {
-    dispatch({ type: REDUCER_ACTIONS.SUBMIT });
-    setConfirm(true);
-  };
+  // const onSubmitOrder = () => {
+  //   dispatch({ type: REDUCER_ACTIONS.SUBMIT });
+  //   setConfirm(true);
+  // };
 
   const content = confirm ? (
     <div>
@@ -47,7 +52,7 @@ const CartLine = () => {
           <Button
             buttonRole="primary"
             className="w-full @sm:w-auto"
-            handleClick={onSubmitOrder}
+            handleClick={handlePlaceOrderClick}
             disabled={!totalItems}
           >
             Place Order

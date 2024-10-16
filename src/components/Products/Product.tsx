@@ -53,7 +53,7 @@ const Product = ({ product, dispatch, REDUCER_ACTIONS, inCart }: ProductProps): 
 
         {inCart ? (
           <span
-            className="text-xs text-primary bg-primary-100 flex items-center gap-1 p-2 rounded-md"
+            className="text-xs text-primary bg-primary-50 flex items-center gap-1 p-2 rounded-md"
             aria-label="Added to Cart"
             title="Added to Cart"
           >
