@@ -16,6 +16,7 @@ const Cart = ({ setViewCart }: CartProps) => {
   const onSubmitOrder = () => {
     dispatch({ type: REDUCER_ACTIONS.SUBMIT });
     setConfirm(true);
+    setIsCardDetailsOpen(false);
   };
 
   const handlePlaceOrderClick = () => {
@@ -38,17 +39,14 @@ const Cart = ({ setViewCart }: CartProps) => {
         } transition-all duration-500`}
       >
         <div
-          className={`${isCardDetailsOpen ? 'flex flex-col justify-between h-full' : 'hidden'} p-4`}
+          className={`${
+            isCardDetailsOpen ? 'flex flex-col justify-between h-full' : 'hidden'
+          } p-4 bg-gray-950`}
         >
           <header className="flex items-center justify-between p-4">
-            <h2 className="text-text-primary">Payment Details</h2>
+            <h2>Payment Details</h2>
 
-            <button
-              type="button"
-              onClick={handlePlaceOrderClick}
-              className="text-text-primary"
-              aria-label="Close"
-            >
+            <button type="button" onClick={handlePlaceOrderClick} aria-label="Close">
               Close
             </button>
           </header>
