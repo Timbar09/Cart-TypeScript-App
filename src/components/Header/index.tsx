@@ -11,7 +11,7 @@ type PropsType = {
 
 const Header = ({ viewCart, setViewCart }: PropsType) => {
   const content = (
-    <header className="border-y-2 border-gray-200">
+    <header className="border-y-2 border-gray-100">
       <Container className="flex justify-between items-center py-4">
         <div className="flex items-center gap-2">
           <img src={logoImg} alt="Logo" className="h-8" />{' '}

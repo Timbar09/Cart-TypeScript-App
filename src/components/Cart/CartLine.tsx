@@ -7,17 +7,14 @@ import Button from '../Button';
 
 type CartLineProps = {
   handlePlaceOrderClick: () => void;
+  isCardDetailsOpen: boolean;
   confirm: boolean;
 };
 
-const CartLine = ({ handlePlaceOrderClick, confirm }: CartLineProps) => {
-  // const [confirm, setConfirm] = useState<boolean>(false);
+const CartLine = ({ handlePlaceOrderClick, isCardDetailsOpen, confirm }: CartLineProps) => {
   const { dispatch, REDUCER_ACTIONS, totalItems, totalPrice, cart } = useCart();
 
-  // const onSubmitOrder = () => {
-  //   dispatch({ type: REDUCER_ACTIONS.SUBMIT });
-  //   setConfirm(true);
-  // };
+  const placeOrderButtonDisabled = !totalItems || isCardDetailsOpen ? true : false;
 
   const content = confirm ? (
     <div>
@@ -51,9 +48,12 @@ const CartLine = ({ handlePlaceOrderClick, confirm }: CartLineProps) => {
         <div className="flex flex-col-reverse @sm:flex-row justify-between items-center gap-4 py-4">
           <Button
             buttonRole="primary"
-            className="w-full @sm:w-auto"
+            className={`w-full @sm:w-auto ${
+              placeOrderButtonDisabled ? 'cursor-not-allowed bg-gray-300 hover:bg-gray-300' : ''
+            }
+              `}
             handleClick={handlePlaceOrderClick}
-            disabled={!totalItems}
+            disabled={placeOrderButtonDisabled}
           >
             Place Order
           </Button>

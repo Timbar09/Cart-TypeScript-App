@@ -24,24 +24,24 @@ const Cart = ({ setViewCart }: CartProps) => {
   };
 
   return (
-    <div className="relative lg:flex lg:gap-4">
+    <div className="relative md:flex md:gap-4">
       <div className="flex-[1.5] xl:flex-[2]">
         <CartNav setViewCart={setViewCart} />
 
-        <CartLine handlePlaceOrderClick={handlePlaceOrderClick} confirm={confirm} />
+        <CartLine
+          handlePlaceOrderClick={handlePlaceOrderClick}
+          isCardDetailsOpen={isCardDetailsOpen}
+          confirm={confirm}
+        />
       </div>
 
       <div
-        className={`${
-          isCardDetailsOpen ? 'fixed lg:relative inset-0' : 'hidden'
-        } bg-primary-100 self-stretch flex-${
-          isCardDetailsOpen ? 1 : 0
-        } transition-all duration-500`}
+        className={`overflow-hidden fixed md:relative inset-0' bg-gray-950 self-stretch flex-${
+          isCardDetailsOpen ? '[1.5] lg:flex-1' : 0
+        } transition-[flex] duration-500`}
       >
         <div
-          className={`${
-            isCardDetailsOpen ? 'flex flex-col justify-between h-full' : 'hidden'
-          } p-4 bg-gray-950`}
+          className={`${isCardDetailsOpen ? 'flex flex-col justify-between h-full' : 'hidden'} p-4`}
         >
           <header className="flex items-center justify-between p-4">
             <h2>Payment Details</h2>
