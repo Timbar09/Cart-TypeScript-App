@@ -17,9 +17,11 @@ const CartLine = ({ handlePlaceOrderClick, isCardDetailsOpen, confirm }: CartLin
   const placeOrderButtonDisabled = !totalItems || isCardDetailsOpen ? true : false;
 
   const content = confirm ? (
-    <div>
-      <h1>Order Confirmed</h1>
-      <p>Thank you for your order!</p>
+    <div className="min-h-40 grid place-items-center text-center">
+      <div className="">
+        <h1 className="text-3xl font-medium text-text-primary">Order Confirmed</h1>
+        <p>Thank you for your order!</p>
+      </div>
     </div>
   ) : (
     <div>
