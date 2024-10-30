@@ -1,5 +1,3 @@
-// import { useState } from 'react';
-
 import useCart from '../../hooks/useCart';
 
 import CartLineItem from './CartLineItem';
@@ -24,13 +22,13 @@ const CartLine = ({ handlePlaceOrderClick, isCardDetailsOpen, confirm }: CartLin
       </div>
     </div>
   ) : (
-    <div>
+    <div className="h-[calc(100%-3.5rem)]">
       <header className=" py-4">
         <h2 className="text-3xl font-medium text-text-primary">Your Shopping Cart</h2>
       </header>
 
       {cart.length ? (
-        <ul className="flex flex-col gap-4 py-6">
+        <ul className="h-[calc(100%-8.75rem)] flex flex-col gap-4 py-6 overflow-y-auto">
           {cart.map((item) => (
             <CartLineItem
               key={item.sku}
@@ -41,7 +39,7 @@ const CartLine = ({ handlePlaceOrderClick, isCardDetailsOpen, confirm }: CartLin
           ))}
         </ul>
       ) : (
-        <div className="min-h-40 grid place-items-center">
+        <div className="h-[calc(100%-8.75rem)] grid place-items-center">
           <p>Your cart is empty</p>
         </div>
       )}

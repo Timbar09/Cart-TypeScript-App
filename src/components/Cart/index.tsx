@@ -25,7 +25,7 @@ const Cart = ({ setViewCart }: CartProps) => {
   };
 
   return (
-    <div className="relative md:flex md:gap-4">
+    <div className="relative md:flex md:gap-4 h-[calc(100vh-9rem)] min-h-[23rem]">
       <div className="flex-[1.5] xl:flex-[2]">
         <CartNav setViewCart={setViewCart} />
 
