@@ -12,7 +12,14 @@ type CartLineProps = {
 const CartLine = ({ handlePlaceOrderClick, isCardDetailsOpen, confirm }: CartLineProps) => {
   const { dispatch, REDUCER_ACTIONS, totalItems, totalPrice, cart } = useCart();
 
-  const placeOrderButtonDisabled = !totalItems || isCardDetailsOpen ? true : false;
+  // const placeOrderButtonDisabled = !totalItems || isCardDetailsOpen ? true : false;
+
+  const placeOrderButtonVisibility = () => {
+    if (!totalItems) return false;
+    if (isCardDetailsOpen) return false;
+
+    return true;
+  };
 
   const content = confirm ? (
     <div className="min-h-40 grid place-items-center text-center">
@@ -48,12 +55,11 @@ const CartLine = ({ handlePlaceOrderClick, isCardDetailsOpen, confirm }: CartLin
         <div className="flex flex-col-reverse @sm:flex-row justify-between items-center gap-4 py-4">
           <Button
             buttonRole="primary"
-            className={`w-full @sm:w-auto ${
-              placeOrderButtonDisabled ? 'cursor-not-allowed bg-gray-300 hover:bg-gray-300' : ''
+            className={`w-full @sm:w-auto transition-all duration-200 ${
+              placeOrderButtonVisibility() ? 'visible' : 'invisible'
             }
               `}
             handleClick={handlePlaceOrderClick}
-            disabled={placeOrderButtonDisabled}
           >
             Place Order
           </Button>
