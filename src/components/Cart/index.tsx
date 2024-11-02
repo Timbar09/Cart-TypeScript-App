@@ -1,16 +1,15 @@
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
+
 import useCart from '../../hooks/useCart';
 
 import CartLine from './CartLine';
-// import CartNav from '../PageNav';
+import CartNav from '../PageNav';
 import Checkout from './Checkout';
-
-// type CartProps = {
-//   setViewCart: React.Dispatch<React.SetStateAction<boolean>>;
-// };
 
 const Cart = () => {
   const { dispatch, REDUCER_ACTIONS } = useCart();
+  const location = useLocation();
   const [confirm, setConfirm] = useState<boolean>(false);
   const [isCardDetailsOpen, setIsCardDetailsOpen] = useState<boolean>(false);
 
@@ -27,7 +26,7 @@ const Cart = () => {
   return (
     <div className="relative md:flex md:gap-4 h-[calc(100vh-9rem)] min-h-[23rem]">
       <div className="flex-[1.5] xl:flex-[2]">
-        {/* <CartNav setViewCart={setViewCart} /> */}
+        <CartNav path={location.pathname} />
 
         <CartLine
           handlePlaceOrderClick={handlePlaceOrderClick}
