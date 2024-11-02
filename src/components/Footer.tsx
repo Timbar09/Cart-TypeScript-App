@@ -1,26 +1,18 @@
-import useCart from '../hooks/useCart';
+import { Link } from 'react-router-dom';
 
 import Container from './Container';
 
-type PropsType = {
-  viewCart: boolean;
-};
+import logoImg from '../assets/logo.png';
 
-const Footer = ({ viewCart }: PropsType) => {
-  const { totalItems, totalPrice } = useCart();
-
+const Footer = () => {
   const year: number = new Date().getFullYear();
 
   return (
     <footer>
       <Container className="text-sm text-text-secondary items-center py-4 flex justify-between">
-        {viewCart && (
-          <p>
-            <span className="text-text-primary font-bold">{totalItems}</span> item
-            {totalItems !== 1 && 's'} amounting to{' '}
-            <span className="text-text-primary font-bold">{totalPrice || '$0'}</span> in your cart.
-          </p>
-        )}
+        <Link to="/">
+          <img src={logoImg} alt="Logo" className="h-6" />{' '}
+        </Link>
 
         <p>&copy; {year} React Shop. All rights reserved</p>
       </Container>

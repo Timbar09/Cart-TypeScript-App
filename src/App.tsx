@@ -1,23 +1,19 @@
-import { useState } from 'react';
+import { Outlet } from 'react-router-dom';
 
 import Container from './components/Container';
 import Header from './components/Header';
-import Cart from './components/Cart';
-import Products from './components/Products';
 import Footer from './components/Footer';
 
 function App() {
-  const [viewCart, setViewCart] = useState<boolean>(false);
-
-  const pageContent = viewCart ? <Cart setViewCart={setViewCart} /> : <Products />;
-
   const content = (
     <>
-      <Header viewCart={viewCart} setViewCart={setViewCart} />
+      <Header />
 
-      <Container className="text-text-secondary px-14">{pageContent}</Container>
+      <Container className="text-text-secondary px-14">
+        <Outlet />
+      </Container>
 
-      <Footer viewCart={viewCart} />
+      <Footer />
     </>
   );
 
