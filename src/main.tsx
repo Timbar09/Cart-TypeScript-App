@@ -9,6 +9,7 @@ import { CartProvider } from './context/CartProvider.tsx';
 import App from './App.tsx';
 import Products from './components/Products/index.tsx';
 import Cart from './components/Cart/index.tsx';
+import NoTMatch from './NoTMatch.tsx';
 
 import './index.scss';
 
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
+    errorElement: <NoTMatch />,
     children: [
       {
         path: '/',
