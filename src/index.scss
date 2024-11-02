@@ -36,3 +36,10 @@ button {
 #quantity {
   -moz-appearance: textfield;
 }
+
+.stepperButton {
+  @media (hover: none) {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+}

@@ -3,7 +3,8 @@ import { CartItemType } from '../../context/CartProvider';
 import { ReducerAction, ReducerActionType } from '../../context/CartProvider';
 
 import { IoClose as RemoveIcon } from 'react-icons/io5';
-import { GrFormAdd as AddIcon, GrFormSubtract as SubtractIcon } from 'react-icons/gr';
+
+import CartLineItemStepper from './CartLineItemStepper';
 
 type CartLineItemProps = {
   item: CartItemType;
@@ -23,31 +24,6 @@ const CartLineItem = ({ item, dispatch, REDUCER_ACTIONS }: CartLineItemProps): J
 
   const productPrice: string = numToCurrency(item.price);
   const lineTotal: string = numToCurrency(item.price * item.quantity);
-
-  const onStepperClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const { id } = e.currentTarget;
-
-    if (id === 'decrement' && item.quantity > 1) {
-      dispatch({
-        type: REDUCER_ACTIONS.QUANTITY,
-        payload: { ...item, quantity: item.quantity - 1 },
-      });
-    }
-
-    if (id === 'increment' && item.quantity < 20) {
-      dispatch({
-        type: REDUCER_ACTIONS.QUANTITY,
-        payload: { ...item, quantity: item.quantity + 1 },
-      });
-    }
-  };
-
-  const onChangeQuantity = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch({
-      type: REDUCER_ACTIONS.QUANTITY,
-      payload: { ...item, quantity: Number(e.target.value) },
-    });
-  };
 
   const onRemoveFromCart = () => {
     dispatch({ type: REDUCER_ACTIONS.REMOVE, payload: item });
@@ -81,40 +57,7 @@ const CartLineItem = ({ item, dispatch, REDUCER_ACTIONS }: CartLineItemProps): J
             <p aria-label="Price per item">{productPrice}</p>
           </div>
 
-          <div className="flex items-center gap-1">
-            <label htmlFor="quantity" className="sr-only">
-              Quantity
-            </label>
-
-            <button
-              className="border hover:bg-primary-50 active:bg-primary-100 w-5 h-5 grid place-items-center rounded-full"
-              type="button"
-              id="decrement"
-              aria-label="Decrement quantity"
-              onClick={onStepperClick}
-            >
-              <SubtractIcon />
-            </button>
-            <input
-              className="w-8 text-center border border-gray-200 rounded-md"
-              type="number"
-              id="quantity"
-              value={item.quantity}
-              max={20}
-              min={1}
-              readOnly
-              onChange={onChangeQuantity}
-            />
-            <button
-              className="border hover:bg-primary-50 active:bg-primary-100 w-5 h-5 grid place-items-center rounded-full"
-              type="button"
-              id="increment"
-              aria-label="Increment quantity"
-              onClick={onStepperClick}
-            >
-              <AddIcon />
-            </button>
-          </div>
+          <CartLineItemStepper item={item} dispatch={dispatch} REDUCER_ACTIONS={REDUCER_ACTIONS} />
 
           <p aria-label="Line Total">{lineTotal}</p>
         </div>
