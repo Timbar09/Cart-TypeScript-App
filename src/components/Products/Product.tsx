@@ -6,8 +6,10 @@ import { ReducerActionType, ReducerAction } from '../../context/CartProvider';
 import { PiHeart as WishlistIcon } from 'react-icons/pi';
 import { IoCartOutline as CartIcon } from 'react-icons/io5';
 import { BsCartCheck as CartCheckIcon } from 'react-icons/bs';
+import { HiOutlineArrowLongRight as ChevronRightIcon } from 'react-icons/hi2';
 
 import Button from '../Button';
+import { Link } from 'react-router-dom';
 
 type ProductProps = {
   product: ProductType;
@@ -42,8 +44,14 @@ const Product = ({ product, dispatch, REDUCER_ACTIONS, inCart }: ProductProps): 
       </header>
 
       <img src={img} alt={product.name} className="w-100 border-b-2 border-gray-100" />
+      <Link
+        to={`/products/${product.sku}`}
+        className="group flex items-center text-lg font-semibold text-text-primary py-2 px-4"
+      >
+        <h3 className="">{product.name}</h3>
 
-      <h3 className="text-lg font-semibold text-text-primary py-2 px-4">{product.name}</h3>
+        <ChevronRightIcon className="relative text-2xl opacity-0 left-0 group-hover:left-2 group-hover:opacity-100 transition-all duration-300 delay-75" />
+      </Link>
 
       <div className="flex items-center justify-between gap-1 flex-wrap pt-1 px-4 pb-4">
         <p>
