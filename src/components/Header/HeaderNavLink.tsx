@@ -2,28 +2,27 @@ import { Link } from 'react-router-dom';
 
 import useCart from '../../hooks/useCart';
 
-import { IoCartOutline as CartIcon } from 'react-icons/io5';
-import { PiHeart as WishlistIcon } from 'react-icons/pi';
+import { MdOutlineCircle as PlaceholderIcon } from 'react-icons/md';
 
 type HeaderNavLinkProps = {
   to: string;
   linkName: string;
+  icon?: React.ReactNode;
 };
 
-const linkNames: Record<string, React.ReactNode> = {
-  'Your Cart': <CartIcon className=" text-lg" />,
-  Wishlist: <WishlistIcon className=" text-lg" />,
-};
-
-const HeaderNavLink = ({ linkName, to }: HeaderNavLinkProps) => {
+const HeaderNavLink = ({
+  linkName,
+  to,
+  icon = <PlaceholderIcon className=" text-lg" />,
+}: HeaderNavLinkProps) => {
   const { totalItems } = useCart();
 
   const iconContent = () => {
-    if (linkName !== 'Your Cart') return linkNames[linkName];
+    if (linkName !== 'Your Cart') return icon;
 
     return (
       <div className="relative ">
-        <CartIcon className="text-lg" />
+        {icon}
 
         {totalItems > 0 && (
           <span
