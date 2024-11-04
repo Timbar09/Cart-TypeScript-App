@@ -24,16 +24,16 @@ const ProductView = () => {
           <h1 className="text-2xl text-text-primary">{product.name}</h1>
           <img src={img} alt={product.name} className="w-100" />
 
-          <div className="left absolute top-[5%] bottom-[5%] right-[100%] border-2 border-gray-100 rounded-s-lg">
+          <div className="left flex flex-col absolute top-[5%] bottom-[5%] right-[100%] border-2 border-gray-100 rounded-s-lg">
             <h3 className="text-lg text-text-primary w-max p-4">Similar Products</h3>
 
-            <ul className="flex flex-col">
+            <ul className="flex flex-col flex-1">
               {similarProducts.map((product, i) => (
-                <li key={product.sku}>
+                <li key={product.sku} className="flex-1">
                   <Link
                     to={`/products/${product.sku}`}
-                    className={`block py-4 px-6 text-center hover:bg-gray-50 ${
-                      i !== 0 ? 'border-t-2 border-gray-100' : ''
+                    className={`grid place-items-center h-full text-center hover:bg-gray-50 ${
+                      i !== products.length - 1 ? 'border-t-2 border-gray-100' : 'rounded-es-lg'
                     }`}
                   >
                     <div className="w-16 mx-auto">
