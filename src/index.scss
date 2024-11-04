@@ -43,3 +43,15 @@ button {
     height: 1.75rem;
   }
 }
+
+#product-view .product {
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.045);
+}
+
+#product-view .left {
+  box-shadow: -2px 2px 8px 2px rgba(0, 0, 0, 0.035);
+}
+
+#product-view .right {
+  box-shadow: 2px 2px 8px 2px rgba(0, 0, 0, 0.035);
+}
