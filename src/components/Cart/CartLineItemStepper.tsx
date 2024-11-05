@@ -7,12 +7,14 @@ type CartLineItemStepperProps = {
   item: CartItemType;
   dispatch: React.Dispatch<ReducerAction>;
   REDUCER_ACTIONS: ReducerActionType;
+  size?: string;
 };
 
 const CartLineItemStepper = ({
   item,
   dispatch,
   REDUCER_ACTIONS,
+  size = 'md',
 }: CartLineItemStepperProps): JSX.Element => {
   const onStepperClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     const { id } = e.currentTarget;
@@ -46,7 +48,9 @@ const CartLineItemStepper = ({
       </label>
 
       <button
-        className="stepperButton border hover:bg-primary-100 hover:text-primary active:bg-primary-200 w-5 h-5 grid place-items-center rounded-full"
+        className={`stepperButton border hover:bg-primary-100 hover:text-primary active:bg-primary-200 ${
+          size === 'md' ? 'w-5 h-5' : 'w-8 h-8'
+        } grid place-items-center rounded-full`}
         type="button"
         id="decrement"
         aria-label="Decrement quantity"
@@ -55,7 +59,9 @@ const CartLineItemStepper = ({
         <SubtractIcon />
       </button>
       <input
-        className="w-8 text-center border border-gray-200 rounded-md cursor-default"
+        className={`${
+          size === 'md' ? 'w-8' : 'w-10 leading-9 text-lg'
+        } text-center border border-gray-200 rounded-md cursor-default`}
         type="number"
         id="quantity"
         value={item.quantity}
@@ -65,7 +71,9 @@ const CartLineItemStepper = ({
         onChange={onChangeQuantity}
       />
       <button
-        className="stepperButton border hover:bg-primary-100 hover:text-primary active:bg-primary-200 w-5 h-5 grid place-items-center rounded-full"
+        className={`stepperButton border hover:bg-primary-100 hover:text-primary active:bg-primary-200 ${
+          size === 'md' ? 'w-5 h-5' : 'w-8 h-8'
+        } grid place-items-center rounded-full`}
         type="button"
         id="increment"
         aria-label="Increment quantity"

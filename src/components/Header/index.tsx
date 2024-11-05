@@ -14,7 +14,7 @@ const links = [
     id: 1,
     to: '/products',
     linkName: 'Products',
-    icon: <ProductsIcon className=" text-sm" />,
+    icon: <ProductsIcon className=" text-lg" />,
   },
   {
     id: 2,
