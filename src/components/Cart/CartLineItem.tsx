@@ -6,6 +6,8 @@ import { IoClose as RemoveIcon } from 'react-icons/io5';
 
 import CartLineItemStepper from './CartLineItemStepper';
 
+import { numToCurrency } from '../functions';
+
 type CartLineItemProps = {
   item: CartItemType;
   dispatch: React.Dispatch<ReducerAction>;
@@ -13,13 +15,6 @@ type CartLineItemProps = {
 };
 
 const CartLineItem = ({ item, dispatch, REDUCER_ACTIONS }: CartLineItemProps): JSX.Element => {
-  const numToCurrency = (num: number): string => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-    }).format(num);
-  };
-
   const img: string = new URL(`../../images/${item.sku}.jpg`, import.meta.url).href;
 
   const productPrice: string = numToCurrency(item.price);
