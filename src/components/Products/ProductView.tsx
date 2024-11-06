@@ -22,6 +22,18 @@ const ProductView = () => {
     .filter((product) => product.sku !== sku)
     .slice(0, 3);
 
+  const addItemToCart = () => {
+    if (product) {
+      dispatch({ type: REDUCER_ACTIONS.ADD, payload: { ...product, quantity: 1 } });
+    } else {
+      console.error('Product is undefined');
+    }
+  };
+
+  const removeItemFromCart = () => {
+    dispatch({ type: REDUCER_ACTIONS.REMOVE, payload: cartLineItem });
+  };
+
   return (
     <div
       id="product-view"
@@ -32,21 +44,16 @@ const ProductView = () => {
           <h1 className="text-2xl text-text-primary">{product.name}</h1>
           <img src={img} alt={product.name} className="w-100" />
 
-          {cartLineItem ? (
-            <span className="relative -bottom-8 py-2 px-6 w-max bg-primary-50 rounded">
-              Added to Cart
-            </span>
-          ) : (
-            <Button
-              buttonRole="primary"
-              type="button"
-              className="relative -bottom-8 px-6 w-max"
-              aria-label="Add to Cart"
-              title="Add to Cart"
-            >
-              Add to Cart
-            </Button>
-          )}
+          <Button
+            buttonRole={cartLineItem ? 'tertiary' : 'primary'}
+            type="button"
+            className="relative -bottom-8 px-6 w-max"
+            aria-label={cartLineItem ? 'Remove from Cart' : 'Add to Cart'}
+            title={cartLineItem ? 'Remove from Cart' : 'Add to Cart'}
+            handleClick={cartLineItem ? removeItemFromCart : addItemToCart}
+          >
+            {cartLineItem ? 'Remove from Cart' : 'Add to Cart'}
+          </Button>
 
           <div className="left text-center flex flex-col absolute top-[5%] bottom-[5%] right-[100%] border-2 border-gray-100 rounded-s-lg">
             <h3 className="text-sm text-text-primary w-max p-4">Similar Products</h3>

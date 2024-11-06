@@ -11,6 +11,8 @@ import { HiOutlineArrowLongRight as ChevronRightIcon } from 'react-icons/hi2';
 import Button from '../Button';
 import { Link } from 'react-router-dom';
 
+import { numToCurrency } from '../functions';
+
 type ProductProps = {
   product: ProductType;
   dispatch: React.Dispatch<ReducerAction>;
@@ -21,13 +23,11 @@ type ProductProps = {
 const Product = ({ product, dispatch, REDUCER_ACTIONS, inCart }: ProductProps): ReactElement => {
   const img: string = new URL(`../../images/${product.sku}.jpg`, import.meta.url).href;
 
-  const onAddToCart = () => () =>
+  const onAddToCart = () => {
     dispatch({ type: REDUCER_ACTIONS.ADD, payload: { ...product, quantity: 1 } });
+  };
 
-  const productPrice = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-  }).format(product.price);
+  const productPrice = numToCurrency(product.price);
 
   const content = (
     <li className="relative mb-4 @xs:mb-0 border-2 border-gray-100 rounded-lg overflow-hidden hover:shadow-lg pt-4">
@@ -72,7 +72,7 @@ const Product = ({ product, dispatch, REDUCER_ACTIONS, inCart }: ProductProps): 
             buttonRole="primary"
             type="button"
             className="px-2 hover:shadow-md"
-            handleClick={onAddToCart()}
+            handleClick={onAddToCart}
             aria-label="Add to Cart"
             title="Add to Cart"
           >
