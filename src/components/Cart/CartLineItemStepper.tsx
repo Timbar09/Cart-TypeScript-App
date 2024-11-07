@@ -69,6 +69,8 @@ const CartLineItemStepper = ({
         min={1}
         readOnly
         onChange={onChangeQuantity}
+        aria-label="Item quantity"
+        title="This is the quantity of the item in your cart"
       />
       <button
         className={`stepperButton border hover:bg-primary-100 hover:text-primary active:bg-primary-200 ${
