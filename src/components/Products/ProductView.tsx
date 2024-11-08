@@ -76,7 +76,7 @@ const ProductView = () => {
             {cartLineItem ? 'Remove from Cart' : 'Add to Cart'}
           </Button>
 
-          <div className="left relative w-full sm:w-auto text-center flex flex-col sm:absolute sm:top-[5%] sm:bottom-[5%] sm:right-[100%] border-2 border-gray-100 rounded-s-lg">
+          <div className="left relative w-full sm:w-auto text-center flex flex-col sm:absolute sm:top-[5%] sm:bottom-[5%] sm:right-[100%] border-2 border-gray-100 rounded-s-lg rounded-e-lg sm:rounded-e-none">
             <h3 className="text-sm text-text-primary sm:w-max px-4 pt-6 sm:pt-4 pb-2 sm:pb-4">
               Similar Products
             </h3>
@@ -169,9 +169,13 @@ const ProductView = () => {
                   size="lg"
                 />
 
-                <p className="text-xl text-text-primary font-medium">
-                  {numToCurrency(cartLineItem.price * cartLineItem.quantity)}
-                </p>
+                <div>
+                  <h3 className="text-sm text-text-primary mb-1">Total</h3>
+
+                  <p className="text-xl text-text-primary font-medium">
+                    {numToCurrency(cartLineItem.price * cartLineItem.quantity)}
+                  </p>
+                </div>
               </div>
             )}
           </div>
