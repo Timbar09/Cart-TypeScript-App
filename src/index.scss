@@ -69,3 +69,28 @@ button {
     }
   }
 }
+
+.heart__animation {
+  --dimension: 50px;
+
+  width: var(--dimension);
+  height: var(--dimension);
+  background-image: url('../src/assets/heart.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: left;
+  animation: heart-animation 750ms steps(28) forwards;
+}
+
+@keyframes heart-animation {
+  from {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  to {
+    background-position: right;
+    opacity: 0;
+  }
+}

@@ -1,4 +1,4 @@
-import { memo, ReactElement } from 'react';
+import { memo, ReactElement, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { ProductType } from '../../context/ProductsProvider';
@@ -21,6 +21,7 @@ type ProductProps = {
 const Product = ({ product }: ProductProps): ReactElement => {
   const wishlistContext = useWishlist();
   const cartContext = useCart();
+  const [liked, setLiked] = useState(false);
 
   const inCart: boolean = cartContext.cart.some((cartItem) => cartItem.sku === product.sku);
 
@@ -35,6 +36,12 @@ const Product = ({ product }: ProductProps): ReactElement => {
 
   const onAddToWishlist = () => {
     wishlistContext.dispatch({ type: wishlistContext.WISHLIST_ACTIONS.ADD, payload: product });
+
+    setLiked(true);
+
+    setTimeout(() => {
+      setLiked(false);
+    }, 750);
   };
 
   const onRemoveFromWishlist = () => {
@@ -50,25 +57,33 @@ const Product = ({ product }: ProductProps): ReactElement => {
       <header className="absolute top-0 right-0 flex items-center justify-between p-4">
         <span />
 
-        {inWishlist ? (
-          <Button
-            className="px-2 bg-transparent hover:bg-primary-50 hover:text-primary"
-            aria-label="Remove from Wishlist"
-            title="Remove from Wishlist"
-            handleClick={onRemoveFromWishlist}
-          >
-            <InWishlistIcon className=" text-lg text-primary" />
-          </Button>
-        ) : (
-          <Button
-            className="px-2 bg-transparent hover:bg-primary-50 hover:text-primary"
-            aria-label="Add to Wishlist"
-            title="Add to Wishlist"
-            handleClick={onAddToWishlist}
-          >
-            <NotInWishlistIcon className=" text-lg" />
-          </Button>
-        )}
+        <div className="relative">
+          {inWishlist ? (
+            <Button
+              className="px-2 bg-transparent hover:bg-primary-50 hover:text-primary"
+              aria-label="Remove from Wishlist"
+              title="Remove from Wishlist"
+              handleClick={onRemoveFromWishlist}
+            >
+              <InWishlistIcon className=" text-lg text-primary" />
+            </Button>
+          ) : (
+            <Button
+              className="px-2 bg-transparent hover:bg-primary-50 hover:text-primary"
+              aria-label="Add to Wishlist"
+              title="Add to Wishlist"
+              handleClick={onAddToWishlist}
+            >
+              <NotInWishlistIcon className=" text-lg" />
+            </Button>
+          )}
+
+          <div
+            className={`heart__animation ${
+              liked ? 'block' : 'hidden'
+            } absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2`}
+          />
+        </div>
       </header>
 
       <img src={img} alt={product.name} className="w-100 border-b-2 border-gray-100" />
