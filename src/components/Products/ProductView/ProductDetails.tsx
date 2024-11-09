@@ -1,10 +1,12 @@
 import useCart from '../../../hooks/useCart';
-
+import useWishlist from '../../../hooks/useWishlist';
 import { CartItemType } from '../../../context/CartProvider';
 import { ProductType } from '../../../context/ProductsProvider';
 
 import Button from '../../Button';
 import CartLineItemStepper from '../../Cart/CartLineItemStepper';
+
+import { PiHeart as NotInWishlistIcon, PiHeartFill as InWishlistIcon } from 'react-icons/pi';
 
 import { numToCurrency } from '../../functions';
 
@@ -15,6 +17,15 @@ type ProductDetailsProps = {
 
 const ProductDetails = ({ cartLineItem, product }: ProductDetailsProps) => {
   const { dispatch, REDUCER_ACTIONS } = useCart();
+  const wishlistContext = useWishlist();
+
+  const inWishlist: boolean = wishlistContext.wishlist.find((item) => item.sku === product.sku)
+    ? true
+    : false;
+
+  const onAddToWishlist = () => {
+    wishlistContext.dispatch({ type: wishlistContext.WISHLIST_ACTIONS.ADD, payload: product });
+  };
 
   return (
     <div className="right hidden sm:flex flex-col gap-6 text-center absolute top-[5%] bottom-[5%] left-[100%] p-4 border-2 border-gray-100 rounded-e-lg">
@@ -25,13 +36,24 @@ const ProductDetails = ({ cartLineItem, product }: ProductDetailsProps) => {
       </div>
 
       <Button
-        buttonRole="secondary"
+        buttonRole={inWishlist ? 'tertiary' : 'secondary'}
         type="button"
-        className="p-2 w-max"
-        aria-label="Add to Cart"
-        title="Add to wishlist"
+        className={`inline-flex items-center gap-2 p-2 w-full ${
+          inWishlist ? 'pointer-events-none' : ''
+        }`}
+        handleClick={inWishlist ? () => {} : onAddToWishlist}
       >
-        Add to Wishlist
+        {inWishlist ? (
+          <>
+            <InWishlistIcon className="text-xl" />
+            <span>Wishlisted</span>
+          </>
+        ) : (
+          <>
+            <NotInWishlistIcon className="text-xl" />
+            <span>Wishlist</span>
+          </>
+        )}
       </Button>
 
       {cartLineItem && (

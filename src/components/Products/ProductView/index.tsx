@@ -3,6 +3,10 @@ import { useParams } from 'react-router-dom';
 import useProducts from '../../../hooks/useProducts';
 import { ProductType } from '../../../context/ProductsProvider';
 import useCart from '../../../hooks/useCart';
+import useWishlist from '../../../hooks/useWishlist';
+
+import { IoCartOutline as CartIcon } from 'react-icons/io5';
+import { BsCartCheck as CartCheckIcon, BsCartX as RemoveIcon } from 'react-icons/bs';
 
 import Button from '../../Button';
 import SimilarProducts from './SimilarProducts';
@@ -14,6 +18,7 @@ const ProductView = () => {
   const { dispatch, REDUCER_ACTIONS, cart } = useCart();
   const { sku } = useParams<{ sku: string }>();
   const { products } = useProducts();
+  const wishlistContext = useWishlist();
 
   const cartLineItem = cart.find((item) => item.sku === sku);
 
@@ -26,6 +31,15 @@ const ProductView = () => {
 
   const addItemToCart = () => {
     if (product) {
+      const isWishlisted = wishlistContext.wishlist.find((item) => item.sku === product.sku);
+
+      if (isWishlisted) {
+        wishlistContext.dispatch({
+          type: wishlistContext.WISHLIST_ACTIONS.REMOVE,
+          payload: product,
+        });
+      }
+
       dispatch({ type: REDUCER_ACTIONS.ADD, payload: { ...product, quantity: 1 } });
     } else {
       console.error('Product is undefined');
@@ -64,14 +78,39 @@ const ProductView = () => {
 
           <img src={img} alt={product.name} className="w-100" />
 
-          <Button
-            buttonRole={cartLineItem ? 'tertiary' : 'primary'}
-            type="button"
-            className="hidden sm:inline-block relative -bottom-8 px-6 w-max"
-            handleClick={cartLineItem ? removeItemFromCart : addItemToCart}
-          >
-            {cartLineItem ? 'Remove from Cart' : 'Add to Cart'}
-          </Button>
+          {cartLineItem ? (
+            <div className="hidden sm:inline-block group relative -bottom-8 w-min rounded-md overflow-hidden">
+              <Button
+                buttonRole="tertiary"
+                type="button"
+                className="absolute sm:inline-flex items-center gap-2 px-6 w-full pointer-events-none rounded-none group-hover:-translate-y-full transition-transform duration-500 delay-300 ease-in-out
+                "
+              >
+                <CartCheckIcon className="text-xl" />
+                <span>Added to Cart</span>
+              </Button>
+
+              <Button
+                buttonRole="tertiary"
+                type="button"
+                className="sm:inline-flex items-center gap-2 px-6 w-max rounded-none translate-y-full group-hover:-translate-y-0 transition-transform duration-500 delay-300 ease-in-out"
+                handleClick={removeItemFromCart}
+              >
+                <RemoveIcon className="text-xl" />
+                <span>Remove from Cart</span>
+              </Button>
+            </div>
+          ) : (
+            <Button
+              buttonRole="primary"
+              type="button"
+              className="hidden sm:inline-flex items-center gap-2 relative -bottom-8 px-6 w-max"
+              handleClick={addItemToCart}
+            >
+              <CartIcon className="text-xl" />
+              <span>Add to Cart</span>
+            </Button>
+          )}
 
           <SimilarProducts
             products={similarProducts}

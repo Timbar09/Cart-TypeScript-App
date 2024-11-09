@@ -28,6 +28,15 @@ const Product = ({ product }: ProductProps): ReactElement => {
   const img: string = new URL(`../../images/${product.sku}.jpg`, import.meta.url).href;
 
   const onAddToCart = () => {
+    const isWishlisted = wishlistContext.wishlist.find((item) => item.sku === product.sku);
+
+    if (isWishlisted) {
+      wishlistContext.dispatch({
+        type: wishlistContext.WISHLIST_ACTIONS.REMOVE,
+        payload: product,
+      });
+    }
+
     cartContext.dispatch({
       type: cartContext.REDUCER_ACTIONS.ADD,
       payload: { ...product, quantity: 1 },
