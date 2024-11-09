@@ -1,4 +1,6 @@
 import { memo } from 'react';
+import { Link } from 'react-router-dom';
+
 import { CartItemType } from '../../context/CartProvider';
 import { ReducerAction, ReducerActionType } from '../../context/CartProvider';
 
@@ -31,11 +33,13 @@ const CartLineItem = ({ item, dispatch, REDUCER_ACTIONS }: CartLineItemProps): J
        bg-gray-100 py-4 pl-4 pr-6 rounded-lg"
       >
         <div className="flex items-center gap-4 border-b-2 @lg:border-b-0 border-gray-200 pb-2">
-          <img
-            src={img}
-            alt={item.name}
-            className="max-w-14 sm:max-w-16 rounded-full border-2 border-gray-200"
-          />
+          <Link
+            to={`/products/${item.sku}`}
+            className="rounded-full border-2 border-gray-200 overflow-hidden hover:shadow-md"
+            aria-label="View product"
+          >
+            <img src={img} alt={item.name} className="max-w-14 sm:max-w-16" />
+          </Link>
 
           <div className="">
             <h3 className="text-lg font-semibold text-text-primary" aria-label="Item Name">
