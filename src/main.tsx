@@ -5,6 +5,7 @@ import { RouterProvider } from 'react-router-dom';
 
 import { ProductsProvider } from './context/ProductsProvider.tsx';
 import { CartProvider } from './context/CartProvider.tsx';
+import { WishlistProvider } from './context/WishlistProvider.tsx';
 
 import router from './router';
 
@@ -14,7 +15,9 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ProductsProvider>
       <CartProvider>
-        <RouterProvider router={router} />
+        <WishlistProvider>
+          <RouterProvider router={router} />
+        </WishlistProvider>
       </CartProvider>
     </ProductsProvider>
   </StrictMode>
