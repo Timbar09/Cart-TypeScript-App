@@ -1,31 +1,47 @@
 import { memo, ReactElement } from 'react';
+import { Link } from 'react-router-dom';
 
 import { ProductType } from '../../context/ProductsProvider';
-import { ReducerActionType, ReducerAction } from '../../context/CartProvider';
+import useCart from '../../hooks/useCart';
+import useWishlist from '../../hooks/useWishlist';
 
-import { PiHeart as WishlistIcon } from 'react-icons/pi';
+import { PiHeart as NotInWishlistIcon, PiHeartFill as InWishlistIcon } from 'react-icons/pi';
 import { IoCartOutline as CartIcon } from 'react-icons/io5';
 import { BsCartCheck as CartCheckIcon } from 'react-icons/bs';
 import { HiOutlineArrowLongRight as ChevronRightIcon } from 'react-icons/hi2';
 
 import Button from '../Button';
-import { Link } from 'react-router-dom';
 
 import { numToCurrency } from '../functions';
 
 type ProductProps = {
   product: ProductType;
-  dispatch: React.Dispatch<ReducerAction>;
-  REDUCER_ACTIONS: ReducerActionType;
-  inCart: boolean;
 };
 
-const Product = ({ product, dispatch, REDUCER_ACTIONS, inCart }: ProductProps): ReactElement => {
+const Product = ({ product }: ProductProps): ReactElement => {
+  const wishlistContext = useWishlist();
+  const cartContext = useCart();
+
+  const inCart: boolean = cartContext.cart.some((cartItem) => cartItem.sku === product.sku);
+
   const img: string = new URL(`../../images/${product.sku}.jpg`, import.meta.url).href;
 
   const onAddToCart = () => {
-    dispatch({ type: REDUCER_ACTIONS.ADD, payload: { ...product, quantity: 1 } });
+    cartContext.dispatch({
+      type: cartContext.REDUCER_ACTIONS.ADD,
+      payload: { ...product, quantity: 1 },
+    });
   };
+
+  const onAddToWishlist = () => {
+    wishlistContext.dispatch({ type: wishlistContext.WISHLIST_ACTIONS.ADD, payload: product });
+  };
+
+  const onRemoveFromWishlist = () => {
+    wishlistContext.dispatch({ type: wishlistContext.WISHLIST_ACTIONS.REMOVE, payload: product });
+  };
+
+  const inWishlist: boolean = wishlistContext.wishlist.some((item) => item.sku === product.sku);
 
   const productPrice = numToCurrency(product.price);
 
@@ -34,13 +50,25 @@ const Product = ({ product, dispatch, REDUCER_ACTIONS, inCart }: ProductProps): 
       <header className="absolute top-0 right-0 flex items-center justify-between p-4">
         <span />
 
-        <Button
-          className="px-2 bg-transparent hover:bg-primary-50 hover:text-primary"
-          aria-label="Add to Wishlist"
-          title="Add to Wishlist"
-        >
-          <WishlistIcon className=" text-lg" />
-        </Button>
+        {inWishlist ? (
+          <Button
+            className="px-2 bg-transparent hover:bg-primary-50 hover:text-primary"
+            aria-label="Remove from Wishlist"
+            title="Remove from Wishlist"
+            handleClick={onRemoveFromWishlist}
+          >
+            <InWishlistIcon className=" text-lg text-primary" />
+          </Button>
+        ) : (
+          <Button
+            className="px-2 bg-transparent hover:bg-primary-50 hover:text-primary"
+            aria-label="Add to Wishlist"
+            title="Add to Wishlist"
+            handleClick={onAddToWishlist}
+          >
+            <NotInWishlistIcon className=" text-lg" />
+          </Button>
+        )}
       </header>
 
       <img src={img} alt={product.name} className="w-100 border-b-2 border-gray-100" />
@@ -88,13 +116,11 @@ const Product = ({ product, dispatch, REDUCER_ACTIONS, inCart }: ProductProps): 
 };
 
 const arePropsEqual = (
-  { product: prevProduct, inCart: prevInCart }: ProductProps,
-  { product: nextProduct, inCart: nextInCart }: ProductProps
+  { product: prevProduct }: ProductProps,
+  { product: nextProduct }: ProductProps
 ) => {
-  return (
-    Object.keys(prevProduct).every(
-      (key) => prevProduct[key as keyof ProductType] === nextProduct[key as keyof ProductType]
-    ) && prevInCart === nextInCart
+  return Object.keys(prevProduct).every(
+    (key) => prevProduct[key as keyof ProductType] === nextProduct[key as keyof ProductType]
   );
 };
 
