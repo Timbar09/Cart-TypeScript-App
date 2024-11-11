@@ -24,7 +24,7 @@ const Cart = () => {
   };
 
   return (
-    <div className="relative md:flex md:gap-4 h-[calc(100vh-9rem)] min-h-[23rem]">
+    <div className="relative md:flex md:gap-4 min-h-[calc(100vh-4rem)] pt-20 pb-10 overflow-y-auto">
       <div className="flex-[1.5] xl:flex-[2]">
         <CartNav path={location.pathname} />
 

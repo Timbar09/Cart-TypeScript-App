@@ -34,7 +34,7 @@ const links = [
 
 const Header = () => {
   const content = (
-    <header className="border-y-2 border-gray-100">
+    <header className="border-y-2 border-gray-100 fixed top-0 left-0 right-0 z-50 bg-background-secondary">
       <Container className="flex justify-between items-center py-4">
         <Link to="/" className="flex items-center gap-2">
           <img src={logoImg} alt="Logo" className="h-8" />{' '}

@@ -16,7 +16,7 @@ const ProductList = () => {
   }
 
   return (
-    <div className="@container">
+    <div className="@container min-h-[calc(100vh-4rem)] pt-20 pb-10 overflow-y-auto">
       <header className=" py-4">
         <h2 className="text-3xl font-medium text-text-primary">Explore All Products</h2>
       </header>
