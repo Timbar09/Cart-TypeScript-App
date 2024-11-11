@@ -21,12 +21,14 @@ const links = [
     to: '/wishlist',
     linkName: 'Wishlist',
     icon: <WishlistIcon className=" text-lg" />,
+    hasCount: true,
   },
   {
     id: 3,
     to: '/cart',
     linkName: 'Your Cart',
     icon: <CartIcon className=" text-lg" />,
+    hasCount: true,
   },
 ];
 
@@ -44,7 +46,12 @@ const Header = () => {
         <ul className="flex items-center gap-3">
           {links.map((link) => (
             <li key={link.id}>
-              <NavLink to={link.to} linkName={link.linkName} icon={link.icon} />
+              <NavLink
+                to={link.to}
+                linkName={link.linkName}
+                icon={link.icon}
+                hasCount={link.hasCount}
+              />
             </li>
           ))}
 
