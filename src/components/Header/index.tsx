@@ -5,7 +5,7 @@ import NavLink from './HeaderNavLink';
 
 import { IoCartOutline as CartIcon } from 'react-icons/io5';
 import { PiHeart as WishlistIcon } from 'react-icons/pi';
-import { BsGrid3X3Gap as ProductsIcon } from 'react-icons/bs';
+import { MdOutlineShoppingBag as ShoppingBagIcon } from 'react-icons/md';
 
 import logoImg from '../../assets/logo.png';
 
@@ -13,8 +13,8 @@ const links = [
   {
     id: 1,
     to: '/products',
-    linkName: 'Products',
-    icon: <ProductsIcon className=" text-lg" />,
+    linkName: 'Shop',
+    icon: <ShoppingBagIcon className=" text-lg" />,
   },
   {
     id: 2,

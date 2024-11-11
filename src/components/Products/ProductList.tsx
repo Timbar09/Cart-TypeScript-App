@@ -18,7 +18,7 @@ const ProductList = () => {
   return (
     <div className="@container">
       <header className=" py-4">
-        <h2 className="text-3xl font-medium text-text-primary">Products</h2>
+        <h2 className="text-3xl font-medium text-text-primary">Explore All Products</h2>
       </header>
 
       <ul className="@xs:grid @xs:grid-cols-2 @xl:grid-cols-3 lg:grid-cols-4 gap-4">{content}</ul>
