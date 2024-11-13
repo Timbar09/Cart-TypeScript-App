@@ -25,6 +25,9 @@ export default {
           secondary: '#fff',
         },
       },
+      backgroundImage: {
+        'hero-bg': "url('/src/assets/hero_bg.png')",
+      },
     },
   },
   plugins: [require('@tailwindcss/container-queries')],
