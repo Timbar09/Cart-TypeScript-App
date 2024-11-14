@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 /**
  * Button component
  * @param {Function} handleClick - Function to handle button click
@@ -8,6 +10,8 @@
  * @param {string} [ariaLabel=''] - Button aria-label attribute
  * @param {string} [title=''] - Button title attribute
  * @param {boolean} [hasText=true] Does button contain text?
+ * @param {string} [to] - Link to navigate to
+ * @param {string} [buttonRole='tertiary'] - Button role e.g. primary, secondary, tertiary
  *
  * @returns {JSX.Element} - Button component
  */
@@ -21,6 +25,7 @@ type ButtonProps = {
   disabled?: boolean;
   ariaLabel?: string;
   title?: string;
+  to?: string;
 };
 
 const buttonRoles = {
@@ -42,7 +47,23 @@ const Button = ({
   disabled = false,
   ariaLabel = '',
   title = '',
+  to,
 }: ButtonProps): JSX.Element => {
+  if (to) {
+    return (
+      <Link
+        to={to}
+        className={`py-2 ${
+          doesClassNameContainPx(className) ? '' : 'px-3'
+        } rounded-md  cursor-pointer ${buttonRoles[buttonRole]} ${className}`}
+        aria-label={ariaLabel}
+        title={title}
+      >
+        {children}
+      </Link>
+    );
+  }
+
   return (
     <button
       type={type}
