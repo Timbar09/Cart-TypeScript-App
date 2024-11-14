@@ -9,8 +9,8 @@ import mockup from '../../assets/hero_product_img.svg';
 const HomeHeroSection = () => {
   return (
     <section className="min-h-[calc(100svh-5.75rem)] flex flex-col gap-2">
-      <div className="flex-1 flex gap-4 items-center bg-gray-100 rounded-lg px-4 md:px-8">
-        <div className="relative flex-1 text-text-primary">
+      <div className="flex-1 flex flex-col md:flex-row gap-4 items-center bg-gray-100 rounded-lg py-4 px-4 md:px-8">
+        <div className="relative flex-[.5] text-text-primary">
           <h1 className="text-2xl md:text-3xl lg:text-5xl font-semibold">
             SHOP COMPUTERS
             <span className="block">&amp; ACCESSORIES</span>
@@ -29,7 +29,7 @@ const HomeHeroSection = () => {
           </div>
         </div>
 
-        <div className="text-right relative flex-1">
+        <div className="text-right relative flex-1 w-full max-w-md lg:max-w-lg">
           <div className="absolute text-left py-4 pl-4 pr-24 rounded-lg bottom-0 left-0 bg-white">
             <h2 className="text-sm font-semibold">Best Seller</h2>
             <h3 className="text-text-primary text-2xl font-semibold">Razer Kraken X</h3>
