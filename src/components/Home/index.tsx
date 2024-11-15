@@ -1,4 +1,3 @@
-// import { Link } from 'react-router-dom';
 import HomeHeroSection from './HomeHeroSection';
 
 const Home = () => {

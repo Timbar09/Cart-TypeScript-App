@@ -30,7 +30,7 @@ const HomeHeroSection = () => {
         </div>
 
         <div className="text-right relative flex-1 w-full max-w-md lg:max-w-lg">
-          <div className="absolute text-left py-4 pl-4 pr-24 rounded-lg bottom-0 left-0 bg-white">
+          <div className="sm:absolute text-left py-4 pl-4 pr-24 rounded-lg bottom-0 left-0 bg-white">
             <h2 className="text-sm font-semibold">Best Seller</h2>
             <h3 className="text-text-primary text-2xl font-semibold">Razer Kraken X</h3>
 
@@ -56,7 +56,7 @@ const HomeHeroSection = () => {
             </Button>
           </div>
 
-          <div className="inline-block max-w-52 sm:max-w-64 lg:max-w-[20rem] pl-4 pr-4 lg:pr-12">
+          <div className="-mt-20 sm:mt-0 inline-block max-w-52 sm:max-w-64 lg:max-w-[20rem] pl-4 pr-4 lg:pr-12">
             <img src={mockup} alt="Hero mockup image" className="w-full transform rotate-12" />
           </div>
         </div>
