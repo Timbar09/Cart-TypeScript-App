@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import Container from './Container';
 
-import logoImg from '../assets/logo.png';
+import logoImg from '../assets/images/logo.png';
 
 const Footer = () => {
   const year: number = new Date().getFullYear();

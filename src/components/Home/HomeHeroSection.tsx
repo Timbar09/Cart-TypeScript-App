@@ -4,7 +4,7 @@ import HomeServices from './HomeServices';
 import { IoStar as StarIcon } from 'react-icons/io5';
 import { HiOutlineArrowLongRight as ChevronRightIcon } from 'react-icons/hi2';
 
-import mockup from '../../assets/hero_product_img.svg';
+import mockup from '../../assets/images/hero_product_img.svg';
 
 const HomeHeroSection = () => {
   return (

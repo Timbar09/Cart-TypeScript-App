@@ -28,7 +28,7 @@ const ProductDetails = ({ cartLineItem, product }: ProductDetailsProps) => {
   };
 
   return (
-    <div className="right hidden sm:flex flex-col gap-6 text-center absolute top-[5%] bottom-[5%] left-[100%] p-4 border-2 border-gray-100 rounded-e-lg">
+    <div className="right hidden sm:flex flex-col gap-6 text-center absolute top-[5%] bottom-[5%] left-[100%] p-4 border-2 border-gray-100 rounded-e-lg transition-[width] duration-300">
       <div className="">
         <h3 className="text-sm text-text-primary mb-2">Price</h3>
 

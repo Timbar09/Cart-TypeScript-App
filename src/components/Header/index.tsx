@@ -7,7 +7,7 @@ import { IoCartOutline as CartIcon } from 'react-icons/io5';
 import { PiHeart as WishlistIcon } from 'react-icons/pi';
 import { MdOutlineShoppingBag as ShoppingBagIcon } from 'react-icons/md';
 
-import logoImg from '../../assets/logo.png';
+import logoImg from '../../assets/images/logo.png';
 
 const links = [
   {
