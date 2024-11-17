@@ -5,4 +5,8 @@ const numToCurrency = (num: number): string => {
   }).format(num);
 };
 
-export { numToCurrency };
+const getProductImage = (sku: string): string => {
+  return new URL(`./assets/images/products/${sku}.png`, import.meta.url).href;
+};
+
+export { numToCurrency, getProductImage };

@@ -12,7 +12,7 @@ import { HiOutlineArrowLongRight as ChevronRightIcon } from 'react-icons/hi2';
 
 import Button from '../Button';
 
-import { numToCurrency } from '../../functions';
+import { numToCurrency, getProductImage } from '../../functions';
 
 type ProductProps = {
   product: ProductType;
@@ -25,7 +25,7 @@ const Product = ({ product }: ProductProps): ReactElement => {
 
   const inCart: boolean = cartContext.cart.some((cartItem) => cartItem.sku === product.sku);
 
-  const img: string = new URL(`../../images/${product.sku}.jpg`, import.meta.url).href;
+  const img: string = getProductImage(product.sku);
 
   const onAddToCart = () => {
     const isWishlisted = wishlistContext.wishlist.find((item) => item.sku === product.sku);
@@ -62,7 +62,7 @@ const Product = ({ product }: ProductProps): ReactElement => {
   const productPrice = numToCurrency(product.price);
 
   const content = (
-    <li className="relative mb-4 @xs:mb-0 border-2 border-gray-100 rounded-lg overflow-hidden hover:shadow-lg pt-4">
+    <li className="relative mb-4 @xs:mb-0 border-2 bg-gray-50 border-gray-100 rounded-lg overflow-hidden hover:shadow-lg pt-4">
       <header className="absolute top-0 right-0 flex items-center justify-between p-4">
         <span />
 
@@ -96,42 +96,43 @@ const Product = ({ product }: ProductProps): ReactElement => {
       </header>
 
       <img src={img} alt={product.name} className="w-100 border-b-2 border-gray-100" />
+      <div className="bg-white">
+        <Link
+          to={`/products/${product.sku}`}
+          className="product__link group flex items-center text-lg font-semibold text-text-primary py-2 px-4"
+        >
+          <h3 className="">{product.name}</h3>
 
-      <Link
-        to={`/products/${product.sku}`}
-        className="product__link group flex items-center text-lg font-semibold text-text-primary py-2 px-4"
-      >
-        <h3 className="">{product.name}</h3>
+          <ChevronRightIcon className="product__link--arrow relative text-2xl opacity-0 left-0 group-hover:left-2 group-hover:opacity-100 transition-all duration-300 delay-75" />
+        </Link>
 
-        <ChevronRightIcon className="product__link--arrow relative text-2xl opacity-0 left-0 group-hover:left-2 group-hover:opacity-100 transition-all duration-300 delay-75" />
-      </Link>
+        <div className="flex items-center justify-between gap-1 flex-wrap pt-1 px-4 pb-4">
+          <p>
+            <span className="block text-xs">Price:</span>
+            <span className="text-text-primary font-semibold">{productPrice}</span>
+          </p>
 
-      <div className="flex items-center justify-between gap-1 flex-wrap pt-1 px-4 pb-4">
-        <p>
-          <span className="block text-xs">Price:</span>
-          <span className="text-text-primary font-semibold">{productPrice}</span>
-        </p>
-
-        {inCart ? (
-          <span
-            className="text-xs text-primary bg-primary-50 flex items-center gap-1 p-2 rounded-md"
-            aria-label="Added to Cart"
-            title="Added to Cart"
-          >
-            <CartCheckIcon className="text-lg" />
-          </span>
-        ) : (
-          <Button
-            buttonRole="primary"
-            type="button"
-            className="px-2 hover:shadow-md"
-            handleClick={onAddToCart}
-            aria-label="Add to Cart"
-            title="Add to Cart"
-          >
-            <CartIcon className="text-lg" />
-          </Button>
-        )}
+          {inCart ? (
+            <span
+              className="text-xs text-primary bg-primary-50 flex items-center gap-1 p-2 rounded-md"
+              aria-label="Added to Cart"
+              title="Added to Cart"
+            >
+              <CartCheckIcon className="text-lg" />
+            </span>
+          ) : (
+            <Button
+              buttonRole="primary"
+              type="button"
+              className="px-2 hover:shadow-md"
+              handleClick={onAddToCart}
+              aria-label="Add to Cart"
+              title="Add to Cart"
+            >
+              <CartIcon className="text-lg" />
+            </Button>
+          )}
+        </div>
       </div>
     </li>
   );

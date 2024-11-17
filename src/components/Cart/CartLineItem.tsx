@@ -8,7 +8,7 @@ import { IoClose as RemoveIcon } from 'react-icons/io5';
 
 import CartLineItemStepper from './CartLineItemStepper';
 
-import { numToCurrency } from '../functions';
+import { numToCurrency, getProductImage } from '../../functions';
 
 type CartLineItemProps = {
   item: CartItemType;
@@ -17,7 +17,7 @@ type CartLineItemProps = {
 };
 
 const CartLineItem = ({ item, dispatch, REDUCER_ACTIONS }: CartLineItemProps): JSX.Element => {
-  const img: string = new URL(`../../images/${item.sku}.jpg`, import.meta.url).href;
+  const img = getProductImage(item.sku);
 
   const productPrice: string = numToCurrency(item.price);
   const lineTotal: string = numToCurrency(item.price * item.quantity);
@@ -35,10 +35,10 @@ const CartLineItem = ({ item, dispatch, REDUCER_ACTIONS }: CartLineItemProps): J
         <div className="flex items-center gap-4 border-b-2 @lg:border-b-0 border-gray-200 pb-2">
           <Link
             to={`/products/${item.sku}`}
-            className="rounded-full border-2 border-gray-200 overflow-hidden hover:shadow-md"
+            className="rounded-full border-2 p-2 border-gray-200 overflow-hidden hover:bg-primary-50 hover:border-primary-200 hover:shadow-md"
             aria-label="View product"
           >
-            <img src={img} alt={item.name} className="max-w-14 sm:max-w-16" />
+            <img src={img} alt={item.name} className="max-w-12 sm:max-w-14" />
           </Link>
 
           <div className="">

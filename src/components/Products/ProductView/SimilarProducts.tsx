@@ -11,6 +11,8 @@ import Button from '../../Button';
 
 import CartLineItemStepper from '../../Cart/CartLineItemStepper';
 
+import { getProductImage } from '../../../functions';
+
 type SimilarProductsProps = {
   productId: string;
   products: ProductType[];
@@ -68,25 +70,25 @@ const SimilarProducts = ({
       </div>
 
       <ul className="flex sm:flex-col flex-1 border-t-2 sm:border-t-0 border-gray-100">
-        {products.map((product, i) => (
-          <li key={product.sku} className="flex-1">
-            <Link
-              to={`/products/${product.sku}`}
-              className={`grid place-items-center h-full text-center hover:bg-gray-50 sm:border-t-2 border-gray-100 ${
-                i !== products.length - 1 ? '' : 'rounded-es-lg'
-              }`}
-            >
-              <div className="w-14 mx-auto p-2">
-                <img
-                  src={new URL(`../../../images/${product.sku}.jpg`, import.meta.url).href}
-                  alt={product.name}
-                  className="w-100"
-                />
-                <p className="sr-only">{product.name}</p>
-              </div>
-            </Link>
-          </li>
-        ))}
+        {products.map((product, i) => {
+          const img = getProductImage(product.sku);
+
+          return (
+            <li key={product.sku} className="flex-1">
+              <Link
+                to={`/products/${product.sku}`}
+                className={`grid place-items-center h-full text-center hover:bg-gray-50 sm:border-t-2 border-gray-100 ${
+                  i !== products.length - 1 ? '' : 'rounded-es-lg'
+                }`}
+              >
+                <div className="w-14 mx-auto p-2">
+                  <img src={img} alt={product.name} className="w-100" />
+                  <p className="sr-only">{product.name}</p>
+                </div>
+              </Link>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
