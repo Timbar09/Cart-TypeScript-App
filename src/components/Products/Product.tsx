@@ -12,7 +12,7 @@ import { HiOutlineArrowLongRight as ChevronRightIcon } from 'react-icons/hi2';
 
 import Button from '../Button';
 
-import { numToCurrency } from '../functions';
+import { numToCurrency } from '../../functions';
 
 type ProductProps = {
   product: ProductType;

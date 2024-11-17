@@ -12,7 +12,7 @@ import Button from '../../Button';
 import SimilarProducts from './SimilarProducts';
 import ProductDetails from './ProductDetails';
 
-import { numToCurrency } from '../../functions';
+import { numToCurrency } from '../../../functions';
 
 const ProductView = () => {
   const { dispatch, REDUCER_ACTIONS, cart } = useCart();

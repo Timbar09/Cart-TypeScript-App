@@ -8,7 +8,7 @@ import CartLineItemStepper from '../../Cart/CartLineItemStepper';
 
 import { PiHeart as NotInWishlistIcon, PiHeartFill as InWishlistIcon } from 'react-icons/pi';
 
-import { numToCurrency } from '../../functions';
+import { numToCurrency } from '../../../functions';
 
 type ProductDetailsProps = {
   cartLineItem: CartItemType | undefined;
