@@ -3,32 +3,44 @@
     {
       "sku": "item0001",
       "name": "Widget",
-      "price": 9.99
+      "description": "A basic widget for all your needs",
+      "price": 9.99,
+      "featured": false
     },
     {
       "sku": "item0002",
       "name": "Premium Widget",
-      "price": 19.99
+      "description": "A premium widget that does more",
+      "price": 19.99,
+      "featured": false
     },
     {
       "sku": "item0003",
       "name": "Deluxe Widget",
-      "price": 29.99
+      "description": "A deluxe widget that does everything",
+      "price": 29.99,
+      "featured": true
     },
     {
       "sku": "item0004",
       "name": "Super Widget",
-      "price": 39.99
+      "description": "A super widget that does everything and more",
+      "price": 39.99,
+      "featured": true
     },
     {
       "sku": "item0005",
       "name": "Mega Widget",
-      "price": 49.99
+      "description": "A mega widget that does a lot of amazing things",
+      "price": 49.99,
+      "featured": false
     },
     {
       "sku": "item0006",
       "name": "Ultra Widget",
-      "price": 59.99
+      "description": "An ultra widget that does more than you can imagine",
+      "price": 59.99,
+      "featured": true
     }
   ]
 }

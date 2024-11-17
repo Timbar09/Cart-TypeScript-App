@@ -5,7 +5,9 @@ import { products } from '../../data/products.json';
 export type ProductType = {
   sku: string;
   name: string;
+  description: string;
   price: number;
+  featured: boolean;
 };
 
 const initState: ProductType[] = products;
